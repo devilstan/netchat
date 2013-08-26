@@ -45,6 +45,7 @@ class netchatFrame: public wxFrame
         //(*Identifiers(netchatFrame)
         static const long ID_TEXTCTRL3;
         static const long ID_TEXTCTRL4;
+        static const long ID_TEXTCTRL5;
         static const long ID_BUTTON2;
         static const long ID_TEXTCTRL1;
         static const long ID_TEXTCTRL2;
@@ -65,6 +66,7 @@ class netchatFrame: public wxFrame
         wxStatusBar* StatusBar1;
         wxTextCtrl* TextCtrl2;
         wxTextCtrl* TextCtrl1;
+        wxTextCtrl* TextCtrl5;
         wxTextCtrl* TextCtrl3;
         //*)
 

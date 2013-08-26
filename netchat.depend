@@ -3533,7 +3533,7 @@
 1376351468 d:\mydoc\codeblock project\netchat\netchatapp.h
 	<wx/app.h>
 
-1376460609 d:\mydoc\codeblock project\netchat\netchatmain.h
+1376544164 d:\mydoc\codeblock project\netchat\netchatmain.h
 	<wx/sizer.h>
 	<wx/menu.h>
 	<wx/textctrl.h>
@@ -3546,7 +3546,7 @@
 1353751060 source:d:\mydoc\codeblock project\netchat\resource.rc
 	"wx/msw/wx.rc"
 
-1376460937 source:d:\mydoc\codeblock project\netchat\netchatmain.cpp
+1376548520 source:d:\mydoc\codeblock project\netchat\netchatmain.cpp
 	"wx_pch.h"
 	"netchatMain.h"
 	<wx/msgdlg.h>

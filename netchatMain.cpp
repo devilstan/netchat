@@ -47,6 +47,7 @@ wxString wxbuildinfo(wxbuildinfoformat format)
 //(*IdInit(netchatFrame)
 const long netchatFrame::ID_TEXTCTRL3 = wxNewId();
 const long netchatFrame::ID_TEXTCTRL4 = wxNewId();
+const long netchatFrame::ID_TEXTCTRL5 = wxNewId();
 const long netchatFrame::ID_BUTTON2 = wxNewId();
 const long netchatFrame::ID_TEXTCTRL1 = wxNewId();
 const long netchatFrame::ID_TEXTCTRL2 = wxNewId();
@@ -83,10 +84,12 @@ netchatFrame::netchatFrame(wxWindow* parent,wxWindowID id)
     Panel1 = new wxPanel(this, ID_PANEL1, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL, _T("ID_PANEL1"));
     BoxSizer2 = new wxBoxSizer(wxVERTICAL);
     StaticBoxSizer1 = new wxStaticBoxSizer(wxHORIZONTAL, Panel1, _("Label"));
-    TextCtrl3 = new wxTextCtrl(Panel1, ID_TEXTCTRL3, _("127.0.0.1"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL3"));
+    TextCtrl3 = new wxTextCtrl(Panel1, ID_TEXTCTRL3, _("172.16.132.141"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL3"));
     StaticBoxSizer1->Add(TextCtrl3, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-    TextCtrl4 = new wxTextCtrl(Panel1, ID_TEXTCTRL4, _("000448"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL4"));
+    TextCtrl4 = new wxTextCtrl(Panel1, ID_TEXTCTRL4, _("000448"), wxDefaultPosition, wxSize(54,22), 0, wxDefaultValidator, _T("ID_TEXTCTRL4"));
     StaticBoxSizer1->Add(TextCtrl4, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    TextCtrl5 = new wxTextCtrl(Panel1, ID_TEXTCTRL5, _("001123"), wxDefaultPosition, wxSize(46,22), 0, wxDefaultValidator, _T("ID_TEXTCTRL5"));
+    StaticBoxSizer1->Add(TextCtrl5, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     Button2 = new wxButton(Panel1, ID_BUTTON2, _("LOG IN"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON2"));
     StaticBoxSizer1->Add(Button2, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     BoxSizer2->Add(StaticBoxSizer1, 0, wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_TOP, 5);
@@ -131,6 +134,7 @@ netchatFrame::netchatFrame(wxWindow* parent,wxWindowID id)
     Connect(idMenuAbout,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&netchatFrame::OnAbout);
     //*)
     Connect(ID_SOCKET, wxEVT_SOCKET, (wxObjectEventFunction)&netchatFrame::OnSocketEvent );
+    m_pSocket =  NULL;
 }
 
 netchatFrame::~netchatFrame()
@@ -152,6 +156,7 @@ void netchatFrame::OnAbout(wxCommandEvent& event)
 
 void netchatFrame::OnButton2Click1(wxCommandEvent& event)
 {
+	Button2->Enable(false);
 	wxIPV4address addr;
 	addr.Hostname( TextCtrl3->GetValue() );
 	addr.Service(3000);
@@ -165,6 +170,12 @@ void netchatFrame::OnButton2Click1(wxCommandEvent& event)
 	m_pSocket->WaitOnConnect(20);
 	if ( !m_pSocket->IsConnected() ) {
 		wxMessageBox(_("not!"));
+		Button2->Enable();
+	}else{
+		Button2->Enable(false);
+		TextCtrl3->Enable(false);
+		TextCtrl4->Enable(false);
+		m_pSocket->Write( TextCtrl4->GetValue().mb_str(wxConvUTF8), strlen(TextCtrl4->GetValue().mb_str(wxConvUTF8)) );
 	}
 }
 
@@ -175,10 +186,10 @@ void netchatFrame::OnSocketEvent(wxSocketEvent& event)
 	switch ( event.GetSocketEvent() )
 	{
 		case wxSOCKET_INPUT:
-			(*TextCtrl1) << _("server input.") << _("\n");
+			//(*TextCtrl1) << _("server input.") << _("\n");
 			break;
 		case wxSOCKET_LOST:
-			(*TextCtrl1) << _("server disconnected.") << _("\n");
+			(*TextCtrl1) << _("server's DOWN!!!!!! bye bye.") << _("\n");
 			break;
 		default:
 			break;
@@ -191,10 +202,11 @@ void netchatFrame::OnSocketEvent(wxSocketEvent& event)
 			char buf[4096] = {0};
 			sock->Read(buf, sizeof(buf));
             wxString str_read = wxString::FromUTF8(buf);  //收信陣列數值→字串
-            *TextCtrl1 << str_read << _("\n");
+            wxString user, user_text;
+            user = str_read.Left(7);
+            user_text = str_read.Mid(8);
+            *TextCtrl1 << user << _("\n") << user_text << _("\n");
             RequestUserAttention();
-			//sock->Write(buf, sizeof(buf));
-			//sock->Destroy();
 			break;
 		}
 		case wxSOCKET_OUTPUT:
@@ -214,24 +226,28 @@ void netchatFrame::OnSocketEvent(wxSocketEvent& event)
 
 void netchatFrame::OnButton1Click(wxCommandEvent& event)
 {
-//	wxString str(_("FQ"));
-	wxString lstr = TextCtrl4->GetValue() + TextCtrl2->GetLineText(0);
-	*TextCtrl1 << TextCtrl4->GetValue() << _("\n") << lstr << _("\n");
-	//wxMessageBox(lstr);
-	//*TextCtrl1 << static_cast<int>(lstr.Len());
-	m_pSocket->Write( lstr.mb_str(wxConvUTF8), strlen(lstr.mb_str(wxConvUTF8)) );
-//	m_pSocket->Write( str.mb_str(), 5 );
-	TextCtrl2->Clear();
+	if ( !TextCtrl2->GetLineText(0).IsEmpty() ) {
+		wxString lstr = TextCtrl4->GetValue() + _(",") + TextCtrl5->GetValue() + _(":") + TextCtrl2->GetLineText(0);
+		*TextCtrl1 << TextCtrl4->GetValue() + _(":") << _("\n") << TextCtrl2->GetLineText(0) << _("\n");
+		if ( m_pSocket != NULL ) {
+			if ( m_pSocket->IsConnected() ) {
+				m_pSocket->Write( lstr.mb_str(wxConvUTF8), strlen(lstr.mb_str(wxConvUTF8)) );
+			}
+		}
+		TextCtrl2->Clear();
+	}
 }
 
 void netchatFrame::OnTextCtrl2TextEnter(wxCommandEvent& event)
 {
-//	wxString str(_("FQ"));
-	wxString lstr = TextCtrl4->GetValue() + TextCtrl2->GetLineText(0);
-	*TextCtrl1 << TextCtrl4->GetValue() << _("\n") << lstr << _("\n");
-	//wxMessageBox(lstr);
-	//*TextCtrl1 << static_cast<int>(lstr.Len());
-	m_pSocket->Write( lstr.mb_str(wxConvUTF8), strlen(lstr.mb_str(wxConvUTF8)) );
-//	m_pSocket->Write( str.mb_str(), 5 );
-	TextCtrl2->Clear();
+	if ( !TextCtrl2->GetLineText(0).IsEmpty() ) {
+		wxString lstr = TextCtrl4->GetValue() + _(",") + TextCtrl5->GetValue() + _(":") + TextCtrl2->GetLineText(0);
+		*TextCtrl1 << TextCtrl4->GetValue() + _(":") << _("\n") << TextCtrl2->GetLineText(0) << _("\n");
+		if ( m_pSocket != NULL ) {
+			if ( m_pSocket->IsConnected() ) {
+				m_pSocket->Write( lstr.mb_str(wxConvUTF8), strlen(lstr.mb_str(wxConvUTF8)) );
+			}
+		}
+		TextCtrl2->Clear();
+	}
 }
