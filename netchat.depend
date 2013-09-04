@@ -3608,7 +3608,7 @@
 1376351468 c:\documents and settings\administrator\my documents\my project\netchat\netchatapp.h
 	<wx/app.h>
 
-1378291490 c:\documents and settings\administrator\my documents\my project\netchat\netchatmain.h
+1378297482 c:\documents and settings\administrator\my documents\my project\netchat\netchatmain.h
 	<wx/sizer.h>
 	<wx/stattext.h>
 	<wx/menu.h>
@@ -3629,7 +3629,7 @@
 	<google/protobuf/extension_set.h>
 	<google/protobuf/unknown_field_set.h>
 
-1378292166 source:c:\documents and settings\administrator\my documents\my project\netchat\netchatmain.cpp
+1378299019 source:c:\documents and settings\administrator\my documents\my project\netchat\netchatmain.cpp
 	"wx_pch.h"
 	"netchatMain.h"
 	<wx/msgdlg.h>

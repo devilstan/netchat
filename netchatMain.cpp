@@ -187,7 +187,7 @@ void netchatFrame::OnButton2Click1(wxCommandEvent& event)
 	m_pSocket->SetNotify(wxSOCKET_CONNECTION|wxSOCKET_INPUT_FLAG|wxSOCKET_LOST_FLAG);
 	m_pSocket->Notify(true);
 	m_pSocket->Connect(addr, false);
-	m_pSocket->WaitOnConnect(20);
+	m_pSocket->WaitOnConnect(5);
 	if ( !m_pSocket->IsConnected() ) {
 		wxMessageBox(_("not!"));
 		Button2->Enable();
@@ -195,10 +195,9 @@ void netchatFrame::OnButton2Click1(wxCommandEvent& event)
 		Button2->Enable(false);
 		TextCtrl3->Enable(false);
 		TextCtrl4->Enable(false);
-		std::string temp_username = std::string( TextCtrl4->GetValue().mb_str(wxConvUTF8) );
-		m_pPackage->set_m_susername( temp_username );
-		SendPackage( m_pSocket, m_pPackage );
-		//m_pSocket->Write( TextCtrl4->GetValue().mb_str(wxConvUTF8), strlen(TextCtrl4->GetValue().mb_str(wxConvUTF8)) );
+//		std::string temp_username = std::string( TextCtrl4->GetValue().mb_str(wxConvUTF8) );
+//		m_pPackage->set_m_susername( temp_username );
+//		SendPackage( m_pSocket, m_pPackage );
 	}
 }
 
@@ -209,7 +208,6 @@ void netchatFrame::OnSocketEvent(wxSocketEvent& event)
 	switch ( event.GetSocketEvent() )
 	{
 		case wxSOCKET_INPUT:
-			//(*TextCtrl1) << _("server input.") << _("\n");
 			break;
 		case wxSOCKET_LOST:
 			(*TextCtrl1) << _("server's DOWN!!!!!! bye bye.") << _("\n");
@@ -220,11 +218,12 @@ void netchatFrame::OnSocketEvent(wxSocketEvent& event)
 
 	switch ( event.GetSocketEvent() )
 	{
+		//接收處理
 		case wxSOCKET_INPUT:
 		{
 			MsgPackage package_read = ReadPackage( sock );
-			wxString str_read_user = wxString::FromUTF8( package_read.m_susername().c_str() );  
-			wxString str_read_msg = wxString::FromUTF8( package_read.msg().c_str() );  
+            wxString str_read_user = StringTowxString( package_read.m_susername() );
+			wxString str_read_msg = StringTowxString( package_read.msg() );
             *TextCtrl1 << str_read_user << _("\n") << str_read_msg << _("\n");
             RequestUserAttention();
 			break;
@@ -246,44 +245,25 @@ void netchatFrame::OnSocketEvent(wxSocketEvent& event)
 
 void netchatFrame::OnButton1Click(wxCommandEvent& event)
 {
-	//宣告傳送序列資料buffer
-	std::string mubuffer;
-	//結構序列化
-	m_pPackage->SerializeToString( &mubuffer );
-	//傳送
-	m_pSocket->Write( mubuffer.c_str(), m_pPackage->ByteSize() );
-//	if ( !TextCtrl2->GetLineText(0).IsEmpty() ) {
-//		wxString lstr = TextCtrl4->GetValue() + _(",") + TextCtrl5->GetValue() + _(":") + TextCtrl2->GetLineText(0);
-//		*TextCtrl1 << TextCtrl4->GetValue() + _(":") << _("\n") << TextCtrl2->GetLineText(0) << _("\n");
-//		if ( m_pSocket != NULL ) {
-//			if ( m_pSocket->IsConnected() ) {
-//				m_pSocket->Write( lstr.mb_str(wxConvUTF8), strlen(lstr.mb_str(wxConvUTF8)) );
-//			}
-//		}
-//		TextCtrl2->Clear();
-//	}
+	if ( !TextCtrl2->GetValue().IsEmpty() ) {
+		//設定傳送字串
+		m_pPackage->set_msg( wxStringToString( TextCtrl2->GetValue() ) );
+		//宣告傳送序列資料buffer
+		std::string mubuffer;
+		//結構序列化
+		m_pPackage->SerializeToString( &mubuffer );
+		//傳送
+		m_pSocket->Write( mubuffer.c_str(), m_pPackage->ByteSize() );
+	}
 }
 
 void netchatFrame::OnTextCtrl2TextEnter(wxCommandEvent& event)
 {
-	if ( !TextCtrl2->GetLineText(0).IsEmpty() ) {
-		std::string msgbuf = std::string( TextCtrl2->GetValue().mb_str(wxConvUTF8) );
-		m_pPackage->set_msg( msgbuf );
+	if ( !TextCtrl2->GetValue().IsEmpty() ) {
+		m_pPackage->set_msg( wxStringToString( TextCtrl2->GetValue() ) );
 		SendPackage( m_pSocket, m_pPackage );
-		//m_pPackage->SerializeToString( &sendbuffer );
-		//m_pSocket->Write( sendbuffer.c_str(), m_pPackage->ByteSize() );
 		TextCtrl2->Clear();
 	}
-//	if ( !TextCtrl2->GetLineText(0).IsEmpty() ) {
-//		wxString lstr = TextCtrl4->GetValue() + _(",") + TextCtrl5->GetValue() + _(":") + TextCtrl2->GetLineText(0);
-//		*TextCtrl1 << TextCtrl4->GetValue() + _(":") << _("\n") << TextCtrl2->GetLineText(0) << _("\n");
-//		if ( m_pSocket != NULL ) {
-//			if ( m_pSocket->IsConnected() ) {
-//				m_pSocket->Write( lstr.mb_str(wxConvUTF8), strlen(lstr.mb_str(wxConvUTF8)) );
-//			}
-//		}
-//		TextCtrl2->Clear();
-//	}
 }
 
 void netchatFrame::SendPackage( wxSocketClient* socketclient, MsgPackage* package_tmp )
