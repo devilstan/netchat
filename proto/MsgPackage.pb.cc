@@ -84,7 +84,7 @@ void protobuf_AddDesc_MsgPackage_2eproto() {
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
     "\n\020MsgPackage.proto\"\256\001\n\nMsgPackage\022\022\n\nm_n"
-    "Sock_id\030\001 \002(\005\022\020\n\010m_nIndex\030\002 \002(\005\022\023\n\013m_sUs"
+    "Sock_id\030\001 \002(\r\022\020\n\010m_nIndex\030\002 \002(\005\022\023\n\013m_sUs"
     "ername\030\003 \002(\t\022\023\n\013m_sPassword\030\004 \002(\t\022\026\n\016m_s"
     "Target_user\030\005 \002(\t\022\013\n\003msg\030\006 \002(\t\022\024\n\014m_logi"
     "n_flag\030\007 \002(\010\022\025\n\rm_login_stage\030\010 \002(\005", 195);
@@ -131,7 +131,7 @@ MsgPackage::MsgPackage(const MsgPackage& from)
 
 void MsgPackage::SharedCtor() {
   _cached_size_ = 0;
-  m_nsock_id_ = 0;
+  m_nsock_id_ = 0u;
   m_nindex_ = 0;
   m_susername_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
   m_spassword_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
@@ -186,7 +186,7 @@ MsgPackage* MsgPackage::New() const {
 
 void MsgPackage::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    m_nsock_id_ = 0;
+    m_nsock_id_ = 0u;
     m_nindex_ = 0;
     if (has_m_susername()) {
       if (m_susername_ != &::google::protobuf::internal::kEmptyString) {
@@ -221,12 +221,12 @@ bool MsgPackage::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required int32 m_nSock_id = 1;
+      // required uint32 m_nSock_id = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
                  input, &m_nsock_id_)));
           set_has_m_nsock_id();
         } else {
@@ -370,9 +370,9 @@ bool MsgPackage::MergePartialFromCodedStream(
 
 void MsgPackage::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // required int32 m_nSock_id = 1;
+  // required uint32 m_nSock_id = 1;
   if (has_m_nsock_id()) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->m_nsock_id(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->m_nsock_id(), output);
   }
 
   // required int32 m_nIndex = 2;
@@ -434,9 +434,9 @@ void MsgPackage::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* MsgPackage::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // required int32 m_nSock_id = 1;
+  // required uint32 m_nSock_id = 1;
   if (has_m_nsock_id()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->m_nsock_id(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(1, this->m_nsock_id(), target);
   }
 
   // required int32 m_nIndex = 2;
@@ -505,10 +505,10 @@ int MsgPackage::ByteSize() const {
   int total_size = 0;
 
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // required int32 m_nSock_id = 1;
+    // required uint32 m_nSock_id = 1;
     if (has_m_nsock_id()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
+        ::google::protobuf::internal::WireFormatLite::UInt32Size(
           this->m_nsock_id());
     }
 

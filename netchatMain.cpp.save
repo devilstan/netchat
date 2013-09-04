@@ -195,9 +195,9 @@ void netchatFrame::OnButton2Click1(wxCommandEvent& event)
 		Button2->Enable(false);
 		TextCtrl3->Enable(false);
 		TextCtrl4->Enable(false);
-		std::string temp_username = std::string( TextCtrl4->GetValue().mb_str(wxConvUTF8) );
-		m_pPackage->set_m_susername( temp_username );
-		SendPackage( m_pSocket, m_pPackage );
+//		std::string temp_username = std::string( TextCtrl4->GetValue().mb_str(wxConvUTF8) );
+//		m_pPackage->set_m_susername( temp_username );
+//		SendPackage( m_pSocket, m_pPackage );
 	}
 }
 
@@ -221,10 +221,39 @@ void netchatFrame::OnSocketEvent(wxSocketEvent& event)
 		//接收處理
 		case wxSOCKET_INPUT:
 		{
-			MsgPackage package_read = ReadPackage( sock );
-            wxString str_read_user = StringTowxString( package_read.m_susername() );
-			wxString str_read_msg = StringTowxString( package_read.msg() );
-            *TextCtrl1 << str_read_user << _("\n") << str_read_msg << _("\n");
+			MsgPackage package_r = ReadPackage( sock );
+			(*m_pPackage) = package_r;	//接收封包副本
+			switch ( package_r.m_login_stage() )
+			{
+				case 1:
+					(*TextCtrl1) << _("login stage = ") << package_r.m_login_stage() << _("\n");
+					m_pPackage->set_m_susername( wxStringToString( TextCtrl6_username->GetValue() ) );
+					m_pPackage->set_m_spassword( wxStringToString( TextCtrl7_passwd->GetValue() ) );
+					m_pPackage->set_m_login_stage(2);
+					SendPackage( m_pSocket, m_pPackage );
+					break;
+				case 2:
+					(*TextCtrl1) << _("login stage = ") << package_r.m_login_stage() << _("\n");
+					break;
+				case 3:
+					(*TextCtrl1) << _("login stage = ") << package_r.m_login_stage() << _("\n");
+					(*TextCtrl1) << _("username = ") << StringTowxString( package_r.m_susername() ) << _("\n");
+					(*TextCtrl1) << _("passwd = ") << StringTowxString( package_r.m_spassword() ) << _("\n");
+					(*TextCtrl1) << _("login result = ") << (int)package_r.m_login_flag() << _("\n");
+					
+					break;
+				case 4:
+					(*TextCtrl1) << _("login stage = ") << package_r.m_login_stage() << _("\n");
+					break;
+				default:
+					(*TextCtrl1) << _("login stage = ") << package_r.m_login_stage() << _("\n");
+					break;
+			}
+			(*TextCtrl1) << _("login stage = ") << package_r.m_login_stage() << _("\n");
+			
+            wxString str_read_user = StringTowxString( package_r.m_susername() );
+			wxString str_read_msg = StringTowxString( package_r.msg() );
+            (*TextCtrl1) << str_read_user << _("\n") << str_read_msg << _("\n");
             RequestUserAttention();
 			break;
 		}

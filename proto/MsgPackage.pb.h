@@ -89,12 +89,12 @@ class MsgPackage : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // required int32 m_nSock_id = 1;
+  // required uint32 m_nSock_id = 1;
   inline bool has_m_nsock_id() const;
   inline void clear_m_nsock_id();
   static const int kMNSockIdFieldNumber = 1;
-  inline ::google::protobuf::int32 m_nsock_id() const;
-  inline void set_m_nsock_id(::google::protobuf::int32 value);
+  inline ::google::protobuf::uint32 m_nsock_id() const;
+  inline void set_m_nsock_id(::google::protobuf::uint32 value);
 
   // required int32 m_nIndex = 2;
   inline bool has_m_nindex() const;
@@ -186,7 +186,7 @@ class MsgPackage : public ::google::protobuf::Message {
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
-  ::google::protobuf::int32 m_nsock_id_;
+  ::google::protobuf::uint32 m_nsock_id_;
   ::google::protobuf::int32 m_nindex_;
   ::std::string* m_susername_;
   ::std::string* m_spassword_;
@@ -212,7 +212,7 @@ class MsgPackage : public ::google::protobuf::Message {
 
 // MsgPackage
 
-// required int32 m_nSock_id = 1;
+// required uint32 m_nSock_id = 1;
 inline bool MsgPackage::has_m_nsock_id() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
@@ -223,13 +223,13 @@ inline void MsgPackage::clear_has_m_nsock_id() {
   _has_bits_[0] &= ~0x00000001u;
 }
 inline void MsgPackage::clear_m_nsock_id() {
-  m_nsock_id_ = 0;
+  m_nsock_id_ = 0u;
   clear_has_m_nsock_id();
 }
-inline ::google::protobuf::int32 MsgPackage::m_nsock_id() const {
+inline ::google::protobuf::uint32 MsgPackage::m_nsock_id() const {
   return m_nsock_id_;
 }
-inline void MsgPackage::set_m_nsock_id(::google::protobuf::int32 value) {
+inline void MsgPackage::set_m_nsock_id(::google::protobuf::uint32 value) {
   set_has_m_nsock_id();
   m_nsock_id_ = value;
 }
