@@ -46,17 +46,17 @@
 			</Target>
 		</Build>
 		<Compiler>
+			<Add option="-Wall" />
 			<Add option="-pipe" />
 			<Add option="-mthreads" />
+			<Add option='[[if (PLATFORM == PLATFORM_MSW &amp;&amp; (GetCompilerFactory().GetCompilerVersionString(_T(&quot;gcc&quot;)) &gt;= _T(&quot;4.0.0&quot;))) print(_T(&quot;-Wno-attributes&quot;));]]' />
+			<Add option="-Winvalid-pch" />
+			<Add option="-include wx_pch.h" />
 			<Add option="-D__GNUWIN32__" />
 			<Add option="-D__WXMSW__" />
 			<Add option="-DWXUSINGDLL" />
 			<Add option="-DwxUSE_UNICODE" />
-			<Add option='[[if (PLATFORM == PLATFORM_MSW &amp;&amp; (GetCompilerFactory().GetCompilerVersionString(_T(&quot;gcc&quot;)) &gt;= _T(&quot;4.0.0&quot;))) print(_T(&quot;-Wno-attributes&quot;));]]' />
-			<Add option="-Winvalid-pch" />
-			<Add option="-include wx_pch.h" />
 			<Add option="-DWX_PRECOMP" />
-			<Add option="-Wall" />
 			<Add directory="$(#wx)/include" />
 			<Add directory="$(#wx)/contrib/include" />
 		</Compiler>
@@ -65,11 +65,14 @@
 		</ResourceCompiler>
 		<Linker>
 			<Add option="-mthreads" />
+			<Add option="-lprotobuf" />
 		</Linker>
 		<Unit filename="netchatApp.cpp" />
 		<Unit filename="netchatApp.h" />
 		<Unit filename="netchatMain.cpp" />
 		<Unit filename="netchatMain.h" />
+		<Unit filename="proto/MsgPackage.pb.cc" />
+		<Unit filename="proto/MsgPackage.pb.h" />
 		<Unit filename="resource.rc">
 			<Option compilerVar="WINDRES" />
 		</Unit>

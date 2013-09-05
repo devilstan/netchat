@@ -36,11 +36,10 @@ class netchatFrame: public wxFrame
         //(*Handlers(netchatFrame)
         void OnQuit(wxCommandEvent& event);
         void OnAbout(wxCommandEvent& event);
-        void OnButton2Click(wxCommandEvent& event);
-        void OnButton2Click1(wxCommandEvent& event);
         void OnButton1Click(wxCommandEvent& event);
         void OnTextCtrl2TextEnter(wxCommandEvent& event);
         void OnButton3Click(wxCommandEvent& event);
+        void OnButton3_logonClick(wxCommandEvent& event);
         //*)
 
         void OnSocketEvent(wxSocketEvent& event);
@@ -56,9 +55,6 @@ class netchatFrame: public wxFrame
         static const long ID_TEXTCTRL7;
         static const long ID_BUTTON3;
         static const long ID_TEXTCTRL3;
-        static const long ID_TEXTCTRL4;
-        static const long ID_TEXTCTRL5;
-        static const long ID_BUTTON2;
         static const long ID_TEXTCTRL1;
         static const long ID_TEXTCTRL2;
         static const long ID_BUTTON1;
@@ -72,7 +68,6 @@ class netchatFrame: public wxFrame
 
         //(*Declarations(netchatFrame)
         wxStaticBoxSizer* StaticBoxSizer2;
-        wxTextCtrl* TextCtrl4;
         wxStaticText* StaticText2;
         wxTextCtrl* TextCtrl6_username;
         wxTextCtrl* TextCtrl7_passwd;
@@ -80,12 +75,10 @@ class netchatFrame: public wxFrame
         wxPanel* Panel1;
         wxStaticText* StaticText1;
         wxBoxSizer* BoxSizer2;
-        wxButton* Button2;
-        wxButton* Button3;
+        wxButton* Button3_logon;
         wxStatusBar* StatusBar1;
         wxTextCtrl* TextCtrl2;
         wxTextCtrl* TextCtrl1;
-        wxTextCtrl* TextCtrl5;
         wxTextCtrl* TextCtrl3;
         //*)
 
