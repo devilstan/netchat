@@ -127,17 +127,21 @@ class MsgPackage : public ::google::protobuf::Message {
   inline ::std::string* release_m_spassword();
   inline void set_allocated_m_spassword(::std::string* m_spassword);
 
-  // required string m_sTarget_user = 5;
-  inline bool has_m_starget_user() const;
+  // repeated string m_sTarget_user = 5;
+  inline int m_starget_user_size() const;
   inline void clear_m_starget_user();
   static const int kMSTargetUserFieldNumber = 5;
-  inline const ::std::string& m_starget_user() const;
-  inline void set_m_starget_user(const ::std::string& value);
-  inline void set_m_starget_user(const char* value);
-  inline void set_m_starget_user(const char* value, size_t size);
-  inline ::std::string* mutable_m_starget_user();
-  inline ::std::string* release_m_starget_user();
-  inline void set_allocated_m_starget_user(::std::string* m_starget_user);
+  inline const ::std::string& m_starget_user(int index) const;
+  inline ::std::string* mutable_m_starget_user(int index);
+  inline void set_m_starget_user(int index, const ::std::string& value);
+  inline void set_m_starget_user(int index, const char* value);
+  inline void set_m_starget_user(int index, const char* value, size_t size);
+  inline ::std::string* add_m_starget_user();
+  inline void add_m_starget_user(const ::std::string& value);
+  inline void add_m_starget_user(const char* value);
+  inline void add_m_starget_user(const char* value, size_t size);
+  inline const ::google::protobuf::RepeatedPtrField< ::std::string>& m_starget_user() const;
+  inline ::google::protobuf::RepeatedPtrField< ::std::string>* mutable_m_starget_user();
 
   // required string msg = 6;
   inline bool has_msg() const;
@@ -165,6 +169,32 @@ class MsgPackage : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 m_login_stage() const;
   inline void set_m_login_stage(::google::protobuf::int32 value);
 
+  // required int32 m_err_code = 9;
+  inline bool has_m_err_code() const;
+  inline void clear_m_err_code();
+  static const int kMErrCodeFieldNumber = 9;
+  inline ::google::protobuf::int32 m_err_code() const;
+  inline void set_m_err_code(::google::protobuf::int32 value);
+
+  // required bool m_update_user_flag = 10;
+  inline bool has_m_update_user_flag() const;
+  inline void clear_m_update_user_flag();
+  static const int kMUpdateUserFlagFieldNumber = 10;
+  inline bool m_update_user_flag() const;
+  inline void set_m_update_user_flag(bool value);
+
+  // required string handle = 11;
+  inline bool has_handle() const;
+  inline void clear_handle();
+  static const int kHandleFieldNumber = 11;
+  inline const ::std::string& handle() const;
+  inline void set_handle(const ::std::string& value);
+  inline void set_handle(const char* value);
+  inline void set_handle(const char* value, size_t size);
+  inline ::std::string* mutable_handle();
+  inline ::std::string* release_handle();
+  inline void set_allocated_handle(::std::string* handle);
+
   // @@protoc_insertion_point(class_scope:MsgPackage)
  private:
   inline void set_has_m_nsock_id();
@@ -175,14 +205,18 @@ class MsgPackage : public ::google::protobuf::Message {
   inline void clear_has_m_susername();
   inline void set_has_m_spassword();
   inline void clear_has_m_spassword();
-  inline void set_has_m_starget_user();
-  inline void clear_has_m_starget_user();
   inline void set_has_msg();
   inline void clear_has_msg();
   inline void set_has_m_login_flag();
   inline void clear_has_m_login_flag();
   inline void set_has_m_login_stage();
   inline void clear_has_m_login_stage();
+  inline void set_has_m_err_code();
+  inline void clear_has_m_err_code();
+  inline void set_has_m_update_user_flag();
+  inline void clear_has_m_update_user_flag();
+  inline void set_has_handle();
+  inline void clear_has_handle();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
@@ -190,13 +224,16 @@ class MsgPackage : public ::google::protobuf::Message {
   ::google::protobuf::int32 m_nindex_;
   ::std::string* m_susername_;
   ::std::string* m_spassword_;
-  ::std::string* m_starget_user_;
+  ::google::protobuf::RepeatedPtrField< ::std::string> m_starget_user_;
   ::std::string* msg_;
-  bool m_login_flag_;
   ::google::protobuf::int32 m_login_stage_;
+  bool m_login_flag_;
+  bool m_update_user_flag_;
+  ::std::string* handle_;
+  ::google::protobuf::int32 m_err_code_;
 
   mutable int _cached_size_;
-  ::google::protobuf::uint32 _has_bits_[(8 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(11 + 31) / 32];
 
   friend void  protobuf_AddDesc_MsgPackage_2eproto();
   friend void protobuf_AssignDesc_MsgPackage_2eproto();
@@ -396,74 +433,48 @@ inline void MsgPackage::set_allocated_m_spassword(::std::string* m_spassword) {
   }
 }
 
-// required string m_sTarget_user = 5;
-inline bool MsgPackage::has_m_starget_user() const {
-  return (_has_bits_[0] & 0x00000010u) != 0;
-}
-inline void MsgPackage::set_has_m_starget_user() {
-  _has_bits_[0] |= 0x00000010u;
-}
-inline void MsgPackage::clear_has_m_starget_user() {
-  _has_bits_[0] &= ~0x00000010u;
+// repeated string m_sTarget_user = 5;
+inline int MsgPackage::m_starget_user_size() const {
+  return m_starget_user_.size();
 }
 inline void MsgPackage::clear_m_starget_user() {
-  if (m_starget_user_ != &::google::protobuf::internal::kEmptyString) {
-    m_starget_user_->clear();
-  }
-  clear_has_m_starget_user();
+  m_starget_user_.Clear();
 }
-inline const ::std::string& MsgPackage::m_starget_user() const {
-  return *m_starget_user_;
+inline const ::std::string& MsgPackage::m_starget_user(int index) const {
+  return m_starget_user_.Get(index);
 }
-inline void MsgPackage::set_m_starget_user(const ::std::string& value) {
-  set_has_m_starget_user();
-  if (m_starget_user_ == &::google::protobuf::internal::kEmptyString) {
-    m_starget_user_ = new ::std::string;
-  }
-  m_starget_user_->assign(value);
+inline ::std::string* MsgPackage::mutable_m_starget_user(int index) {
+  return m_starget_user_.Mutable(index);
 }
-inline void MsgPackage::set_m_starget_user(const char* value) {
-  set_has_m_starget_user();
-  if (m_starget_user_ == &::google::protobuf::internal::kEmptyString) {
-    m_starget_user_ = new ::std::string;
-  }
-  m_starget_user_->assign(value);
+inline void MsgPackage::set_m_starget_user(int index, const ::std::string& value) {
+  m_starget_user_.Mutable(index)->assign(value);
 }
-inline void MsgPackage::set_m_starget_user(const char* value, size_t size) {
-  set_has_m_starget_user();
-  if (m_starget_user_ == &::google::protobuf::internal::kEmptyString) {
-    m_starget_user_ = new ::std::string;
-  }
-  m_starget_user_->assign(reinterpret_cast<const char*>(value), size);
+inline void MsgPackage::set_m_starget_user(int index, const char* value) {
+  m_starget_user_.Mutable(index)->assign(value);
 }
-inline ::std::string* MsgPackage::mutable_m_starget_user() {
-  set_has_m_starget_user();
-  if (m_starget_user_ == &::google::protobuf::internal::kEmptyString) {
-    m_starget_user_ = new ::std::string;
-  }
+inline void MsgPackage::set_m_starget_user(int index, const char* value, size_t size) {
+  m_starget_user_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* MsgPackage::add_m_starget_user() {
+  return m_starget_user_.Add();
+}
+inline void MsgPackage::add_m_starget_user(const ::std::string& value) {
+  m_starget_user_.Add()->assign(value);
+}
+inline void MsgPackage::add_m_starget_user(const char* value) {
+  m_starget_user_.Add()->assign(value);
+}
+inline void MsgPackage::add_m_starget_user(const char* value, size_t size) {
+  m_starget_user_.Add()->assign(reinterpret_cast<const char*>(value), size);
+}
+inline const ::google::protobuf::RepeatedPtrField< ::std::string>&
+MsgPackage::m_starget_user() const {
   return m_starget_user_;
 }
-inline ::std::string* MsgPackage::release_m_starget_user() {
-  clear_has_m_starget_user();
-  if (m_starget_user_ == &::google::protobuf::internal::kEmptyString) {
-    return NULL;
-  } else {
-    ::std::string* temp = m_starget_user_;
-    m_starget_user_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
-    return temp;
-  }
-}
-inline void MsgPackage::set_allocated_m_starget_user(::std::string* m_starget_user) {
-  if (m_starget_user_ != &::google::protobuf::internal::kEmptyString) {
-    delete m_starget_user_;
-  }
-  if (m_starget_user) {
-    set_has_m_starget_user();
-    m_starget_user_ = m_starget_user;
-  } else {
-    clear_has_m_starget_user();
-    m_starget_user_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
-  }
+inline ::google::protobuf::RepeatedPtrField< ::std::string>*
+MsgPackage::mutable_m_starget_user() {
+  return &m_starget_user_;
 }
 
 // required string msg = 6;
@@ -578,6 +589,120 @@ inline ::google::protobuf::int32 MsgPackage::m_login_stage() const {
 inline void MsgPackage::set_m_login_stage(::google::protobuf::int32 value) {
   set_has_m_login_stage();
   m_login_stage_ = value;
+}
+
+// required int32 m_err_code = 9;
+inline bool MsgPackage::has_m_err_code() const {
+  return (_has_bits_[0] & 0x00000100u) != 0;
+}
+inline void MsgPackage::set_has_m_err_code() {
+  _has_bits_[0] |= 0x00000100u;
+}
+inline void MsgPackage::clear_has_m_err_code() {
+  _has_bits_[0] &= ~0x00000100u;
+}
+inline void MsgPackage::clear_m_err_code() {
+  m_err_code_ = 0;
+  clear_has_m_err_code();
+}
+inline ::google::protobuf::int32 MsgPackage::m_err_code() const {
+  return m_err_code_;
+}
+inline void MsgPackage::set_m_err_code(::google::protobuf::int32 value) {
+  set_has_m_err_code();
+  m_err_code_ = value;
+}
+
+// required bool m_update_user_flag = 10;
+inline bool MsgPackage::has_m_update_user_flag() const {
+  return (_has_bits_[0] & 0x00000200u) != 0;
+}
+inline void MsgPackage::set_has_m_update_user_flag() {
+  _has_bits_[0] |= 0x00000200u;
+}
+inline void MsgPackage::clear_has_m_update_user_flag() {
+  _has_bits_[0] &= ~0x00000200u;
+}
+inline void MsgPackage::clear_m_update_user_flag() {
+  m_update_user_flag_ = false;
+  clear_has_m_update_user_flag();
+}
+inline bool MsgPackage::m_update_user_flag() const {
+  return m_update_user_flag_;
+}
+inline void MsgPackage::set_m_update_user_flag(bool value) {
+  set_has_m_update_user_flag();
+  m_update_user_flag_ = value;
+}
+
+// required string handle = 11;
+inline bool MsgPackage::has_handle() const {
+  return (_has_bits_[0] & 0x00000400u) != 0;
+}
+inline void MsgPackage::set_has_handle() {
+  _has_bits_[0] |= 0x00000400u;
+}
+inline void MsgPackage::clear_has_handle() {
+  _has_bits_[0] &= ~0x00000400u;
+}
+inline void MsgPackage::clear_handle() {
+  if (handle_ != &::google::protobuf::internal::kEmptyString) {
+    handle_->clear();
+  }
+  clear_has_handle();
+}
+inline const ::std::string& MsgPackage::handle() const {
+  return *handle_;
+}
+inline void MsgPackage::set_handle(const ::std::string& value) {
+  set_has_handle();
+  if (handle_ == &::google::protobuf::internal::kEmptyString) {
+    handle_ = new ::std::string;
+  }
+  handle_->assign(value);
+}
+inline void MsgPackage::set_handle(const char* value) {
+  set_has_handle();
+  if (handle_ == &::google::protobuf::internal::kEmptyString) {
+    handle_ = new ::std::string;
+  }
+  handle_->assign(value);
+}
+inline void MsgPackage::set_handle(const char* value, size_t size) {
+  set_has_handle();
+  if (handle_ == &::google::protobuf::internal::kEmptyString) {
+    handle_ = new ::std::string;
+  }
+  handle_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* MsgPackage::mutable_handle() {
+  set_has_handle();
+  if (handle_ == &::google::protobuf::internal::kEmptyString) {
+    handle_ = new ::std::string;
+  }
+  return handle_;
+}
+inline ::std::string* MsgPackage::release_handle() {
+  clear_has_handle();
+  if (handle_ == &::google::protobuf::internal::kEmptyString) {
+    return NULL;
+  } else {
+    ::std::string* temp = handle_;
+    handle_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    return temp;
+  }
+}
+inline void MsgPackage::set_allocated_handle(::std::string* handle) {
+  if (handle_ != &::google::protobuf::internal::kEmptyString) {
+    delete handle_;
+  }
+  if (handle) {
+    set_has_handle();
+    handle_ = handle;
+  } else {
+    clear_has_handle();
+    handle_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+  }
 }
 
 

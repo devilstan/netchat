@@ -3,7 +3,7 @@
 	<object class="wxFrame" name="netchatFrame">
 		<title>ICQQ CLIENT</title>
 		<id_arg>0</id_arg>
-		<object class="wxBoxSizer" variable="BoxSizer1" member="no">
+		<object class="wxBoxSizer" variable="BoxSizer1" member="yes">
 			<object class="sizeritem">
 				<object class="wxPanel" name="ID_PANEL1" variable="Panel1" member="yes">
 					<object class="wxBoxSizer" variable="BoxSizer2" member="yes">
@@ -48,7 +48,7 @@
 									<border>5</border>
 								</object>
 							</object>
-							<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+							<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 							<border>5</border>
 							<option>1</option>
 						</object>
@@ -57,10 +57,21 @@
 								<label>Server</label>
 								<object class="sizeritem">
 									<object class="wxTextCtrl" name="ID_TEXTCTRL3" variable="TextCtrl3" member="yes">
-										<value>127.0.0.1</value>
+										<value>172.16.132.141</value>
 									</object>
 									<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 									<border>5</border>
+								</object>
+								<object class="sizeritem">
+									<object class="wxButton" name="ID_BUTTON2" variable="Button2_logout" member="yes">
+										<label>logout</label>
+										<enabled>0</enabled>
+										<hidden>1</hidden>
+										<handler function="OnButton2_logoutClick" entry="EVT_BUTTON" />
+									</object>
+									<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+									<border>5</border>
+									<option>1</option>
 								</object>
 							</object>
 							<flag>wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_TOP</flag>
@@ -76,6 +87,13 @@
 									<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
 									<border>5</border>
 									<option>1</option>
+								</object>
+								<object class="sizeritem">
+									<object class="wxCheckListBox" name="ID_CHECKLISTBOX1" variable="CheckListBox1_usetlist" member="yes">
+										<style>wxLB_MULTIPLE</style>
+									</object>
+									<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+									<border>5</border>
 								</object>
 							</object>
 							<flag>wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
@@ -97,6 +115,7 @@
 									<object class="wxButton" name="ID_BUTTON1" variable="Button1" member="yes">
 										<label>send</label>
 										<size>75,64</size>
+										<enabled>0</enabled>
 										<handler function="OnButton1Click" entry="EVT_BUTTON" />
 									</object>
 									<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>

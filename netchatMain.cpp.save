@@ -53,6 +53,7 @@ const long netchatFrame::ID_STATICTEXT2 = wxNewId();
 const long netchatFrame::ID_TEXTCTRL7 = wxNewId();
 const long netchatFrame::ID_BUTTON3 = wxNewId();
 const long netchatFrame::ID_TEXTCTRL3 = wxNewId();
+const long netchatFrame::ID_BUTTON2 = wxNewId();
 const long netchatFrame::ID_TEXTCTRL1 = wxNewId();
 const long netchatFrame::ID_TEXTCTRL2 = wxNewId();
 const long netchatFrame::ID_BUTTON1 = wxNewId();
@@ -76,7 +77,6 @@ netchatFrame::netchatFrame(wxWindow* parent,wxWindowID id)
     wxMenuItem* MenuItem2;
     wxMenuItem* MenuItem1;
     wxMenu* Menu1;
-    wxBoxSizer* BoxSizer1;
     wxMenuBar* MenuBar1;
     wxStaticBoxSizer* StaticBoxSizer1;
     wxBoxSizer* BoxSizer3;
@@ -101,6 +101,10 @@ netchatFrame::netchatFrame(wxWindow* parent,wxWindowID id)
     StaticBoxSizer1 = new wxStaticBoxSizer(wxHORIZONTAL, Panel1, _("Server"));
     TextCtrl3 = new wxTextCtrl(Panel1, ID_TEXTCTRL3, _("127.0.0.1"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL3"));
     StaticBoxSizer1->Add(TextCtrl3, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    Button2_logout = new wxButton(Panel1, ID_BUTTON2, _("logout"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON2"));
+    Button2_logout->Disable();
+    Button2_logout->Hide();
+    StaticBoxSizer1->Add(Button2_logout, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     BoxSizer2->Add(StaticBoxSizer1, 0, wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_TOP, 5);
     BoxSizer3 = new wxBoxSizer(wxHORIZONTAL);
     TextCtrl1 = new wxTextCtrl(Panel1, ID_TEXTCTRL1, wxEmptyString, wxDefaultPosition, wxSize(332,291), wxTE_MULTILINE, wxDefaultValidator, _T("ID_TEXTCTRL1"));
@@ -137,6 +141,7 @@ netchatFrame::netchatFrame(wxWindow* parent,wxWindowID id)
     BoxSizer1->SetSizeHints(this);
 
     Connect(ID_BUTTON3,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&netchatFrame::OnButton3_logonClick);
+    Connect(ID_BUTTON2,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&netchatFrame::OnButton2_logoutClick);
     Connect(ID_TEXTCTRL2,wxEVT_COMMAND_TEXT_ENTER,(wxObjectEventFunction)&netchatFrame::OnTextCtrl2TextEnter);
     Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&netchatFrame::OnButton1Click);
     Connect(idMenuQuit,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&netchatFrame::OnQuit);
@@ -188,6 +193,8 @@ void netchatFrame::OnButton3_logonClick(wxCommandEvent& event)
 		TextCtrl6_username->Enable();
 		TextCtrl7_passwd->Enable();
 	}else{
+		//Button2_logout->Enable(false);
+		//Button2_logout->Hide();
 		Button3_logon->Enable(false);
 		TextCtrl3->Enable(false);
 		TextCtrl6_username->Enable(false);
@@ -220,35 +227,52 @@ void netchatFrame::OnSocketEvent(wxSocketEvent& event)
 		{
 			MsgPackage package_r = ReadPackage( sock );
 			(*m_pPackage) = package_r;	//接收封包副本
-			if ( !package_r.m_login_flag() ) {}
-			switch ( package_r.m_login_stage() )
-			{
-				case 1:
-					(*TextCtrl1) << _("login stage = ") << package_r.m_login_stage() << _("\n");
-					m_pPackage->set_m_susername( wxStringToString( TextCtrl6_username->GetValue() ) );
-					m_pPackage->set_m_spassword( wxStringToString( TextCtrl7_passwd->GetValue() ) );
-					m_pPackage->set_m_login_stage(2);
-					SendPackage( m_pSocket, m_pPackage );
-					break;
-				case 2:
-					(*TextCtrl1) << _("login stage = ") << package_r.m_login_stage() << _("\n");
-					break;
-				case 3:
-					(*TextCtrl1) << _("login stage = ") << package_r.m_login_stage() << _("\n");
-					(*TextCtrl1) << _("username = ") << StringTowxString( package_r.m_susername() ) << _("\n");
-					(*TextCtrl1) << _("passwd = ") << StringTowxString( package_r.m_spassword() ) << _("\n");
-					(*TextCtrl1) << _("login result = ") << (int)package_r.m_login_flag() << _("\n");
+			if ( !package_r.m_login_flag() || (package_r.m_login_stage() < 4) ) {
+				switch ( package_r.m_login_stage() )
+				{
+					case 1:
+						(*TextCtrl1) << _("login stage = ") << package_r.m_login_stage() << _("\n");
+						m_pPackage->set_m_susername( wxStringToString( TextCtrl6_username->GetValue() ) );
+						m_pPackage->set_m_spassword( wxStringToString( TextCtrl7_passwd->GetValue() ) );
+						m_pPackage->set_m_login_stage(2);
+						SendPackage( m_pSocket, m_pPackage );
+						break;
+					case 2:
+						(*TextCtrl1) << _("login stage = ") << package_r.m_login_stage() << _("\n");
+						break;
+					case 3:
+						(*TextCtrl1) << _("login stage = ") << package_r.m_login_stage() << _("\n");
+						(*TextCtrl1) << _("username = ") << StringTowxString( package_r.m_susername() ) << _("\n");
+						(*TextCtrl1) << _("passwd = ") << StringTowxString( package_r.m_spassword() ) << _("\n");
+						(*TextCtrl1) << _("login result = ") << (int)package_r.m_login_flag() << _("\n");
+						if ( package_r.m_login_flag() ) {
+							m_pPackage->set_m_login_stage(4);
+							StaticBoxSizer2->Show(false);
+							Button2_logout->Show();
+							Button2_logout->Enable();
+							BoxSizer2->RecalcSizes();
+							this->UpdateWindowUI();
+						}
+						else {
+							StaticBoxSizer2->Show(true);
+							BoxSizer2->RecalcSizes();
+						}
 
-					break;
-				case 4:
-					(*TextCtrl1) << _("login stage = ") << package_r.m_login_stage() << _("\n");
-					break;
-				default:
-					(*TextCtrl1) << _("login stage = ") << package_r.m_login_stage() << _("\n");
-					(*TextCtrl1) << _("sockid = ") << (long)package_r.m_nsock_id() << _("\n");
-					break;
+						break;
+					case 4:
+						(*TextCtrl1) << _("login stage = ") << package_r.m_login_stage() << _("\n");
+						break;
+					default:
+						(*TextCtrl1) << _("login stage = ") << package_r.m_login_stage() << _("\n");
+						(*TextCtrl1) << _("sockid = ") << (long)package_r.m_nsock_id() << _("\n");
+						break;
+				}
 			}
-            RequestUserAttention();
+			else {
+				(*TextCtrl1) << 
+				StringTowxString(package_r.msg()) << _("\n");
+				RequestUserAttention();
+			}
 			break;
 		}
 		case wxSOCKET_OUTPUT:
@@ -331,3 +355,17 @@ wxString netchatFrame::StringTowxString(const std::string& s)
 //	}
 //	BoxSizer2->RecalcSizes();
 //}
+
+void netchatFrame::OnButton2_logoutClick(wxCommandEvent& event)
+{
+	if ( m_pSocket->Close() ) {
+		StaticBoxSizer2->Show(true);
+		BoxSizer2->RecalcSizes();
+		Button3_logon->Enable();
+		TextCtrl3->Enable();
+		TextCtrl6_username->Enable();
+		TextCtrl7_passwd->Enable();
+		Button2_logout->Enable(false);
+		Button2_logout->Hide();
+	}
+}

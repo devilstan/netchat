@@ -3,8 +3,11 @@ message MsgPackage {
 	required int32 m_nIndex = 2;
 	required string m_sUsername = 3;
 	required string m_sPassword = 4;
-	required string m_sTarget_user = 5;
+	repeated string m_sTarget_user = 5;
 	required string msg = 6;
 	required bool m_login_flag = 7;
 	required int32 m_login_stage = 8;
+	required int32 m_err_code = 9;
+	required bool m_update_user_flag = 10;
+	required string handle = 11;
 }

@@ -15,6 +15,7 @@
 #include <wx/stattext.h>
 #include <wx/menu.h>
 #include <wx/textctrl.h>
+#include <wx/checklst.h>
 #include <wx/panel.h>
 #include <wx/button.h>
 #include <wx/frame.h>
@@ -40,6 +41,7 @@ class netchatFrame: public wxFrame
         void OnTextCtrl2TextEnter(wxCommandEvent& event);
         void OnButton3Click(wxCommandEvent& event);
         void OnButton3_logonClick(wxCommandEvent& event);
+        void OnButton2_logoutClick(wxCommandEvent& event);
         //*)
 
         void OnSocketEvent(wxSocketEvent& event);
@@ -55,7 +57,9 @@ class netchatFrame: public wxFrame
         static const long ID_TEXTCTRL7;
         static const long ID_BUTTON3;
         static const long ID_TEXTCTRL3;
+        static const long ID_BUTTON2;
         static const long ID_TEXTCTRL1;
+        static const long ID_CHECKLISTBOX1;
         static const long ID_TEXTCTRL2;
         static const long ID_BUTTON1;
         static const long ID_PANEL1;
@@ -72,12 +76,15 @@ class netchatFrame: public wxFrame
         wxTextCtrl* TextCtrl6_username;
         wxTextCtrl* TextCtrl7_passwd;
         wxButton* Button1;
+        wxCheckListBox* CheckListBox1_usetlist;
+        wxButton* Button2_logout;
         wxPanel* Panel1;
         wxStaticText* StaticText1;
         wxBoxSizer* BoxSizer2;
         wxButton* Button3_logon;
         wxStatusBar* StatusBar1;
         wxTextCtrl* TextCtrl2;
+        wxBoxSizer* BoxSizer1;
         wxTextCtrl* TextCtrl1;
         wxTextCtrl* TextCtrl3;
         //*)
