@@ -82,7 +82,7 @@
 								<object class="sizeritem">
 									<object class="wxTextCtrl" name="ID_TEXTCTRL1" variable="TextCtrl1" member="yes">
 										<size>332,291</size>
-										<style>wxTE_MULTILINE</style>
+										<style>wxTE_MULTILINE|wxTE_READONLY</style>
 									</object>
 									<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
 									<border>5</border>
@@ -104,6 +104,7 @@
 								<object class="sizeritem">
 									<object class="wxTextCtrl" name="ID_TEXTCTRL2" variable="TextCtrl2" member="yes">
 										<size>188,66</size>
+										<enabled>0</enabled>
 										<style>wxTE_PROCESS_ENTER</style>
 										<handler function="OnTextCtrl2TextEnter" entry="EVT_TEXT_ENTER" />
 									</object>

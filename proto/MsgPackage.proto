@@ -9,5 +9,6 @@ message MsgPackage {
 	required int32 m_login_stage = 8;
 	required int32 m_err_code = 9;
 	required bool m_update_user_flag = 10;
-	required string handle = 11;
+	required int32 handle = 11;
+	repeated string m_user_list = 12;
 }

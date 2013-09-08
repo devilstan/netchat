@@ -32,7 +32,7 @@ void protobuf_AssignDesc_MsgPackage_2eproto() {
       "MsgPackage.proto");
   GOOGLE_CHECK(file != NULL);
   MsgPackage_descriptor_ = file->message_type(0);
-  static const int MsgPackage_offsets_[11] = {
+  static const int MsgPackage_offsets_[12] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgPackage, m_nsock_id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgPackage, m_nindex_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgPackage, m_susername_),
@@ -44,6 +44,7 @@ void protobuf_AssignDesc_MsgPackage_2eproto() {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgPackage, m_err_code_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgPackage, m_update_user_flag_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgPackage, handle_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgPackage, m_user_list_),
   };
   MsgPackage_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -86,13 +87,13 @@ void protobuf_AddDesc_MsgPackage_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\020MsgPackage.proto\"\356\001\n\nMsgPackage\022\022\n\nm_n"
+    "\n\020MsgPackage.proto\"\203\002\n\nMsgPackage\022\022\n\nm_n"
     "Sock_id\030\001 \002(\r\022\020\n\010m_nIndex\030\002 \002(\005\022\023\n\013m_sUs"
     "ername\030\003 \002(\t\022\023\n\013m_sPassword\030\004 \002(\t\022\026\n\016m_s"
     "Target_user\030\005 \003(\t\022\013\n\003msg\030\006 \002(\t\022\024\n\014m_logi"
     "n_flag\030\007 \002(\010\022\025\n\rm_login_stage\030\010 \002(\005\022\022\n\nm"
     "_err_code\030\t \002(\005\022\032\n\022m_update_user_flag\030\n "
-    "\002(\010\022\016\n\006handle\030\013 \002(\t", 259);
+    "\002(\010\022\016\n\006handle\030\013 \002(\005\022\023\n\013m_user_list\030\014 \003(\t", 280);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "MsgPackage.proto", &protobuf_RegisterTypes);
   MsgPackage::default_instance_ = new MsgPackage();
@@ -121,6 +122,7 @@ const int MsgPackage::kMLoginStageFieldNumber;
 const int MsgPackage::kMErrCodeFieldNumber;
 const int MsgPackage::kMUpdateUserFlagFieldNumber;
 const int MsgPackage::kHandleFieldNumber;
+const int MsgPackage::kMUserListFieldNumber;
 #endif  // !_MSC_VER
 
 MsgPackage::MsgPackage()
@@ -148,7 +150,7 @@ void MsgPackage::SharedCtor() {
   m_login_stage_ = 0;
   m_err_code_ = 0;
   m_update_user_flag_ = false;
-  handle_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+  handle_ = 0;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -165,9 +167,6 @@ void MsgPackage::SharedDtor() {
   }
   if (msg_ != &::google::protobuf::internal::kEmptyString) {
     delete msg_;
-  }
-  if (handle_ != &::google::protobuf::internal::kEmptyString) {
-    delete handle_;
   }
   if (this != default_instance_) {
   }
@@ -219,13 +218,10 @@ void MsgPackage::Clear() {
   if (_has_bits_[8 / 32] & (0xffu << (8 % 32))) {
     m_err_code_ = 0;
     m_update_user_flag_ = false;
-    if (has_handle()) {
-      if (handle_ != &::google::protobuf::internal::kEmptyString) {
-        handle_->clear();
-      }
-    }
+    handle_ = 0;
   }
   m_starget_user_.Clear();
+  m_user_list_.Clear();
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
 }
@@ -397,23 +393,41 @@ bool MsgPackage::MergePartialFromCodedStream(
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(90)) goto parse_handle;
+        if (input->ExpectTag(88)) goto parse_handle;
         break;
       }
 
-      // required string handle = 11;
+      // required int32 handle = 11;
       case 11: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
          parse_handle:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &handle_)));
+          set_has_handle();
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(98)) goto parse_m_user_list;
+        break;
+      }
+
+      // repeated string m_user_list = 12;
+      case 12: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+         parse_m_user_list:
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_handle()));
+                input, this->add_m_user_list()));
           ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-            this->handle().data(), this->handle().length(),
+            this->m_user_list(this->m_user_list_size() - 1).data(),
+            this->m_user_list(this->m_user_list_size() - 1).length(),
             ::google::protobuf::internal::WireFormat::PARSE);
         } else {
           goto handle_uninterpreted;
         }
+        if (input->ExpectTag(98)) goto parse_m_user_list;
         if (input->ExpectAtEnd()) return true;
         break;
       }
@@ -502,13 +516,18 @@ void MsgPackage::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteBool(10, this->m_update_user_flag(), output);
   }
 
-  // required string handle = 11;
+  // required int32 handle = 11;
   if (has_handle()) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->handle().data(), this->handle().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(11, this->handle(), output);
+  }
+
+  // repeated string m_user_list = 12;
+  for (int i = 0; i < this->m_user_list_size(); i++) {
+  ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+    this->m_user_list(i).data(), this->m_user_list(i).length(),
+    ::google::protobuf::internal::WireFormat::SERIALIZE);
     ::google::protobuf::internal::WireFormatLite::WriteString(
-      11, this->handle(), output);
+      12, this->m_user_list(i), output);
   }
 
   if (!unknown_fields().empty()) {
@@ -588,14 +607,18 @@ void MsgPackage::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(10, this->m_update_user_flag(), target);
   }
 
-  // required string handle = 11;
+  // required int32 handle = 11;
   if (has_handle()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(11, this->handle(), target);
+  }
+
+  // repeated string m_user_list = 12;
+  for (int i = 0; i < this->m_user_list_size(); i++) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->handle().data(), this->handle().length(),
+      this->m_user_list(i).data(), this->m_user_list(i).length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE);
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        11, this->handle(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteStringToArray(12, this->m_user_list(i), target);
   }
 
   if (!unknown_fields().empty()) {
@@ -670,10 +693,10 @@ int MsgPackage::ByteSize() const {
       total_size += 1 + 1;
     }
 
-    // required string handle = 11;
+    // required int32 handle = 11;
     if (has_handle()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
           this->handle());
     }
 
@@ -683,6 +706,13 @@ int MsgPackage::ByteSize() const {
   for (int i = 0; i < this->m_starget_user_size(); i++) {
     total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
       this->m_starget_user(i));
+  }
+
+  // repeated string m_user_list = 12;
+  total_size += 1 * this->m_user_list_size();
+  for (int i = 0; i < this->m_user_list_size(); i++) {
+    total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
+      this->m_user_list(i));
   }
 
   if (!unknown_fields().empty()) {
@@ -711,6 +741,7 @@ void MsgPackage::MergeFrom(const ::google::protobuf::Message& from) {
 void MsgPackage::MergeFrom(const MsgPackage& from) {
   GOOGLE_CHECK_NE(&from, this);
   m_starget_user_.MergeFrom(from.m_starget_user_);
+  m_user_list_.MergeFrom(from.m_user_list_);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (from.has_m_nsock_id()) {
       set_m_nsock_id(from.m_nsock_id());
@@ -779,6 +810,7 @@ void MsgPackage::Swap(MsgPackage* other) {
     std::swap(m_err_code_, other->m_err_code_);
     std::swap(m_update_user_flag_, other->m_update_user_flag_);
     std::swap(handle_, other->handle_);
+    m_user_list_.Swap(&other->m_user_list_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);

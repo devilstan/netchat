@@ -183,17 +183,28 @@ class MsgPackage : public ::google::protobuf::Message {
   inline bool m_update_user_flag() const;
   inline void set_m_update_user_flag(bool value);
 
-  // required string handle = 11;
+  // required int32 handle = 11;
   inline bool has_handle() const;
   inline void clear_handle();
   static const int kHandleFieldNumber = 11;
-  inline const ::std::string& handle() const;
-  inline void set_handle(const ::std::string& value);
-  inline void set_handle(const char* value);
-  inline void set_handle(const char* value, size_t size);
-  inline ::std::string* mutable_handle();
-  inline ::std::string* release_handle();
-  inline void set_allocated_handle(::std::string* handle);
+  inline ::google::protobuf::int32 handle() const;
+  inline void set_handle(::google::protobuf::int32 value);
+
+  // repeated string m_user_list = 12;
+  inline int m_user_list_size() const;
+  inline void clear_m_user_list();
+  static const int kMUserListFieldNumber = 12;
+  inline const ::std::string& m_user_list(int index) const;
+  inline ::std::string* mutable_m_user_list(int index);
+  inline void set_m_user_list(int index, const ::std::string& value);
+  inline void set_m_user_list(int index, const char* value);
+  inline void set_m_user_list(int index, const char* value, size_t size);
+  inline ::std::string* add_m_user_list();
+  inline void add_m_user_list(const ::std::string& value);
+  inline void add_m_user_list(const char* value);
+  inline void add_m_user_list(const char* value, size_t size);
+  inline const ::google::protobuf::RepeatedPtrField< ::std::string>& m_user_list() const;
+  inline ::google::protobuf::RepeatedPtrField< ::std::string>* mutable_m_user_list();
 
   // @@protoc_insertion_point(class_scope:MsgPackage)
  private:
@@ -229,11 +240,12 @@ class MsgPackage : public ::google::protobuf::Message {
   ::google::protobuf::int32 m_login_stage_;
   bool m_login_flag_;
   bool m_update_user_flag_;
-  ::std::string* handle_;
   ::google::protobuf::int32 m_err_code_;
+  ::google::protobuf::int32 handle_;
+  ::google::protobuf::RepeatedPtrField< ::std::string> m_user_list_;
 
   mutable int _cached_size_;
-  ::google::protobuf::uint32 _has_bits_[(11 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(12 + 31) / 32];
 
   friend void  protobuf_AddDesc_MsgPackage_2eproto();
   friend void protobuf_AssignDesc_MsgPackage_2eproto();
@@ -635,7 +647,7 @@ inline void MsgPackage::set_m_update_user_flag(bool value) {
   m_update_user_flag_ = value;
 }
 
-// required string handle = 11;
+// required int32 handle = 11;
 inline bool MsgPackage::has_handle() const {
   return (_has_bits_[0] & 0x00000400u) != 0;
 }
@@ -646,63 +658,59 @@ inline void MsgPackage::clear_has_handle() {
   _has_bits_[0] &= ~0x00000400u;
 }
 inline void MsgPackage::clear_handle() {
-  if (handle_ != &::google::protobuf::internal::kEmptyString) {
-    handle_->clear();
-  }
+  handle_ = 0;
   clear_has_handle();
 }
-inline const ::std::string& MsgPackage::handle() const {
-  return *handle_;
-}
-inline void MsgPackage::set_handle(const ::std::string& value) {
-  set_has_handle();
-  if (handle_ == &::google::protobuf::internal::kEmptyString) {
-    handle_ = new ::std::string;
-  }
-  handle_->assign(value);
-}
-inline void MsgPackage::set_handle(const char* value) {
-  set_has_handle();
-  if (handle_ == &::google::protobuf::internal::kEmptyString) {
-    handle_ = new ::std::string;
-  }
-  handle_->assign(value);
-}
-inline void MsgPackage::set_handle(const char* value, size_t size) {
-  set_has_handle();
-  if (handle_ == &::google::protobuf::internal::kEmptyString) {
-    handle_ = new ::std::string;
-  }
-  handle_->assign(reinterpret_cast<const char*>(value), size);
-}
-inline ::std::string* MsgPackage::mutable_handle() {
-  set_has_handle();
-  if (handle_ == &::google::protobuf::internal::kEmptyString) {
-    handle_ = new ::std::string;
-  }
+inline ::google::protobuf::int32 MsgPackage::handle() const {
   return handle_;
 }
-inline ::std::string* MsgPackage::release_handle() {
-  clear_has_handle();
-  if (handle_ == &::google::protobuf::internal::kEmptyString) {
-    return NULL;
-  } else {
-    ::std::string* temp = handle_;
-    handle_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
-    return temp;
-  }
+inline void MsgPackage::set_handle(::google::protobuf::int32 value) {
+  set_has_handle();
+  handle_ = value;
 }
-inline void MsgPackage::set_allocated_handle(::std::string* handle) {
-  if (handle_ != &::google::protobuf::internal::kEmptyString) {
-    delete handle_;
-  }
-  if (handle) {
-    set_has_handle();
-    handle_ = handle;
-  } else {
-    clear_has_handle();
-    handle_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
-  }
+
+// repeated string m_user_list = 12;
+inline int MsgPackage::m_user_list_size() const {
+  return m_user_list_.size();
+}
+inline void MsgPackage::clear_m_user_list() {
+  m_user_list_.Clear();
+}
+inline const ::std::string& MsgPackage::m_user_list(int index) const {
+  return m_user_list_.Get(index);
+}
+inline ::std::string* MsgPackage::mutable_m_user_list(int index) {
+  return m_user_list_.Mutable(index);
+}
+inline void MsgPackage::set_m_user_list(int index, const ::std::string& value) {
+  m_user_list_.Mutable(index)->assign(value);
+}
+inline void MsgPackage::set_m_user_list(int index, const char* value) {
+  m_user_list_.Mutable(index)->assign(value);
+}
+inline void MsgPackage::set_m_user_list(int index, const char* value, size_t size) {
+  m_user_list_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* MsgPackage::add_m_user_list() {
+  return m_user_list_.Add();
+}
+inline void MsgPackage::add_m_user_list(const ::std::string& value) {
+  m_user_list_.Add()->assign(value);
+}
+inline void MsgPackage::add_m_user_list(const char* value) {
+  m_user_list_.Add()->assign(value);
+}
+inline void MsgPackage::add_m_user_list(const char* value, size_t size) {
+  m_user_list_.Add()->assign(reinterpret_cast<const char*>(value), size);
+}
+inline const ::google::protobuf::RepeatedPtrField< ::std::string>&
+MsgPackage::m_user_list() const {
+  return m_user_list_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::std::string>*
+MsgPackage::mutable_m_user_list() {
+  return &m_user_list_;
 }
 
 
