@@ -54,10 +54,11 @@ const long netchatFrame::ID_TEXTCTRL7 = wxNewId();
 const long netchatFrame::ID_BUTTON3 = wxNewId();
 const long netchatFrame::ID_TEXTCTRL3 = wxNewId();
 const long netchatFrame::ID_BUTTON2 = wxNewId();
-const long netchatFrame::ID_TEXTCTRL1 = wxNewId();
+const long netchatFrame::ID_RICHTEXTCTRL1 = wxNewId();
 const long netchatFrame::ID_CHECKLISTBOX1 = wxNewId();
 const long netchatFrame::ID_TEXTCTRL2 = wxNewId();
-const long netchatFrame::ID_BUTTON1 = wxNewId();
+const long netchatFrame::ID_STATICTEXT3 = wxNewId();
+const long netchatFrame::ID_COLOURPICKERCTRL1 = wxNewId();
 const long netchatFrame::ID_PANEL1 = wxNewId();
 const long netchatFrame::idMenuQuit = wxNewId();
 const long netchatFrame::idMenuAbout = wxNewId();
@@ -76,6 +77,7 @@ netchatFrame::netchatFrame(wxWindow* parent,wxWindowID id)
 {
     //(*Initialize(netchatFrame)
     wxBoxSizer* BoxSizer4;
+    wxBoxSizer* BoxSizer5;
     wxMenuItem* MenuItem2;
     wxMenuItem* MenuItem1;
     wxMenu* Menu1;
@@ -91,7 +93,7 @@ netchatFrame::netchatFrame(wxWindow* parent,wxWindowID id)
     StaticBoxSizer2 = new wxStaticBoxSizer(wxHORIZONTAL, Panel1, _("請輸入帳號密碼"));
     StaticText1 = new wxStaticText(Panel1, ID_STATICTEXT1, _("username"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT1"));
     StaticBoxSizer2->Add(StaticText1, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-    TextCtrl6_username = new wxTextCtrl(Panel1, ID_TEXTCTRL6, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL6"));
+    TextCtrl6_username = new wxTextCtrl(Panel1, ID_TEXTCTRL6, _("hello"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL6"));
     StaticBoxSizer2->Add(TextCtrl6_username, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     StaticText2 = new wxStaticText(Panel1, ID_STATICTEXT2, _("passwd"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT2"));
     StaticBoxSizer2->Add(StaticText2, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
@@ -101,15 +103,16 @@ netchatFrame::netchatFrame(wxWindow* parent,wxWindowID id)
     StaticBoxSizer2->Add(Button3_logon, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     BoxSizer2->Add(StaticBoxSizer2, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     StaticBoxSizer1 = new wxStaticBoxSizer(wxHORIZONTAL, Panel1, _("Server"));
-    TextCtrl3 = new wxTextCtrl(Panel1, ID_TEXTCTRL3, _("172.16.132.141"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL3"));
+    TextCtrl3 = new wxTextCtrl(Panel1, ID_TEXTCTRL3, _("127.0.0.1"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL3"));
     StaticBoxSizer1->Add(TextCtrl3, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     Button2_logout = new wxButton(Panel1, ID_BUTTON2, _("logout"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON2"));
     Button2_logout->Disable();
     StaticBoxSizer1->Add(Button2_logout, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     BoxSizer2->Add(StaticBoxSizer1, 0, wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_TOP, 5);
     BoxSizer3 = new wxBoxSizer(wxHORIZONTAL);
-    TextCtrl1 = new wxTextCtrl(Panel1, ID_TEXTCTRL1, wxEmptyString, wxDefaultPosition, wxSize(332,291), wxTE_MULTILINE|wxTE_READONLY, wxDefaultValidator, _T("ID_TEXTCTRL1"));
-    BoxSizer3->Add(TextCtrl1, 1, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 5);
+    RichTextCtrl1 = new wxRichTextCtrl(Panel1, ID_RICHTEXTCTRL1, wxEmptyString, wxDefaultPosition, wxSize(284,350), wxRE_MULTILINE|wxRE_READONLY, wxDefaultValidator, _T("ID_RICHTEXTCTRL1"));
+    wxRichTextAttr rchtxtAttr_1;
+    BoxSizer3->Add(RichTextCtrl1, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     CheckListBox1_usetlist = new wxCheckListBox(Panel1, ID_CHECKLISTBOX1, wxDefaultPosition, wxDefaultSize, 0, 0, wxLB_MULTIPLE, wxDefaultValidator, _T("ID_CHECKLISTBOX1"));
     BoxSizer3->Add(CheckListBox1_usetlist, 0, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     BoxSizer2->Add(BoxSizer3, 0, wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 5);
@@ -117,9 +120,12 @@ netchatFrame::netchatFrame(wxWindow* parent,wxWindowID id)
     TextCtrl2 = new wxTextCtrl(Panel1, ID_TEXTCTRL2, wxEmptyString, wxDefaultPosition, wxSize(188,66), wxTE_PROCESS_ENTER, wxDefaultValidator, _T("ID_TEXTCTRL2"));
     TextCtrl2->Disable();
     BoxSizer4->Add(TextCtrl2, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-    Button1 = new wxButton(Panel1, ID_BUTTON1, _("send"), wxDefaultPosition, wxSize(75,64), 0, wxDefaultValidator, _T("ID_BUTTON1"));
-    Button1->Disable();
-    BoxSizer4->Add(Button1, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    BoxSizer5 = new wxBoxSizer(wxVERTICAL);
+    StaticText3 = new wxStaticText(Panel1, ID_STATICTEXT3, _("color"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT3"));
+    BoxSizer5->Add(StaticText3, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    ColourPickerCtrl1 = new wxColourPickerCtrl(Panel1, ID_COLOURPICKERCTRL1, wxColour(0,0,0), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_COLOURPICKERCTRL1"));
+    BoxSizer5->Add(ColourPickerCtrl1, 0, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    BoxSizer4->Add(BoxSizer5, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     BoxSizer2->Add(BoxSizer4, 0, wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 5);
     Panel1->SetSizer(BoxSizer2);
     BoxSizer2->Fit(Panel1);
@@ -149,7 +155,7 @@ netchatFrame::netchatFrame(wxWindow* parent,wxWindowID id)
     Connect(ID_BUTTON3,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&netchatFrame::OnButton3_logonClick);
     Connect(ID_BUTTON2,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&netchatFrame::OnButton2_logoutClick);
     Connect(ID_TEXTCTRL2,wxEVT_COMMAND_TEXT_ENTER,(wxObjectEventFunction)&netchatFrame::OnTextCtrl2TextEnter);
-    Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&netchatFrame::OnButton1Click);
+    Connect(ID_COLOURPICKERCTRL1,wxEVT_COMMAND_COLOURPICKER_CHANGED,(wxObjectEventFunction)&netchatFrame::OnColourPickerCtrl1ColourChanged);
     Connect(idMenuQuit,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&netchatFrame::OnQuit);
     Connect(idMenuAbout,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&netchatFrame::OnAbout);
     Connect(ID_TIMER1,wxEVT_TIMER,(wxObjectEventFunction)&netchatFrame::OnTimer1Trigger);
@@ -179,40 +185,48 @@ void netchatFrame::OnAbout(wxCommandEvent& event)
 
 void netchatFrame::OnButton3_logonClick(wxCommandEvent& event)
 {
-	Button3_logon->Enable(false);
-	TextCtrl3->Enable(false);
-	TextCtrl6_username->Enable(false);
-	TextCtrl7_passwd->Enable(false);
-	wxIPV4address addr;
-	addr.Hostname( TextCtrl3->GetValue() );
-	addr.Service(3000);
-
-	m_pSocket =  new wxSocketClient();
-
-	m_pSocket->SetEventHandler(*this, ID_SOCKET);
-	m_pSocket->SetNotify(wxSOCKET_CONNECTION|wxSOCKET_INPUT_FLAG|wxSOCKET_LOST_FLAG);
-	m_pSocket->Notify(true);
-	//m_pPackage->clear_m_nsock_id()
-	//m_pPackage->set_m_login_flag(false);
-	m_pPackage->set_m_susername( wxStringToString( TextCtrl6_username->GetValue() ) );
-	m_pSocket->Connect(addr, false);
-	m_pSocket->WaitOnConnect(5);
-	if ( !m_pSocket->IsConnected() ) {
-		wxMessageBox(_("not!"));
-		Button3_logon->Enable();
-		TextCtrl3->Enable();
-		TextCtrl6_username->Enable();
-		TextCtrl7_passwd->Enable();
-	}else{
-		//Button2_logout->Enable(false);
-		//Button2_logout->Hide();
+	wxString user_tmp = TextCtrl6_username->GetValue();
+	wxString user_trim = user_tmp.Trim();
+	if ( user_trim.empty() ) {
+		wxMessageBox(_("OH oh！！Mr. Blank, I can NOT allow you to login for some mystery reason."));
+	}
+	else {
 		Button3_logon->Enable(false);
 		TextCtrl3->Enable(false);
 		TextCtrl6_username->Enable(false);
 		TextCtrl7_passwd->Enable(false);
-		//m_pPackage->Clear();
+		wxIPV4address addr;
+		addr.Hostname( TextCtrl3->GetValue() );
+		addr.Service(3000);
+
+		m_pSocket =  new wxSocketClient();
+
+		m_pSocket->SetEventHandler(*this, ID_SOCKET);
+		m_pSocket->SetNotify(wxSOCKET_CONNECTION|wxSOCKET_INPUT_FLAG|wxSOCKET_LOST_FLAG);
+		m_pSocket->Notify(true);
+		//m_pPackage->clear_m_nsock_id()
+		//m_pPackage->set_m_login_flag(false);
+		m_pPackage->set_m_susername( wxStringToString( TextCtrl6_username->GetValue() ) );
+		m_pPackage->set_ver( m_ver );
+		m_pSocket->Connect(addr, false);
+		m_pSocket->WaitOnConnect(5);
+		if ( !m_pSocket->IsConnected() ) {
+			wxMessageBox(_("not!"));
+			Button3_logon->Enable();
+			TextCtrl3->Enable();
+			TextCtrl6_username->Enable();
+			TextCtrl7_passwd->Enable();
+		}else{
+			//Button2_logout->Enable(false);
+			//Button2_logout->Hide();
+			Button3_logon->Enable(false);
+			TextCtrl3->Enable(false);
+			TextCtrl6_username->Enable(false);
+			TextCtrl7_passwd->Enable(false);
+			//m_pPackage->Clear();
+		}
+		UpdateWindowUI();
 	}
-	UpdateWindowUI();
 }
 
 void netchatFrame::OnSocketEvent(wxSocketEvent& event)
@@ -224,12 +238,14 @@ void netchatFrame::OnSocketEvent(wxSocketEvent& event)
 		case wxSOCKET_INPUT:
 			break;
 		case wxSOCKET_LOST:
-			(*TextCtrl1) << _("server's DOWN!!!!!! bye bye.") << _("\n");
+			(*RichTextCtrl1) << _("server's DOWN!!!!!! bye bye.") << _("\n");
 			break;
 		default:
 			break;
 	}
-
+	
+	wxString colour_str;
+	wxColour colour_custom;
 	switch ( event.GetSocketEvent() )
 	{
 		//接收處理
@@ -243,22 +259,22 @@ void netchatFrame::OnSocketEvent(wxSocketEvent& event)
 					switch ( package_r.m_login_stage() )
 					{
 						case 0:
-							(*TextCtrl1) << StringTowxString(package_r.m_susername()) + _(": login stage(0x00) = ") << package_r.m_login_stage() << _("\n");
-							(*TextCtrl1) << StringTowxString(package_r.msg()) << _("\n");
+							(*RichTextCtrl1) << StringTowxString(package_r.m_susername()) + _(": login stage(0x00) = ") << package_r.m_login_stage() << _("\n");
+							(*RichTextCtrl1) << StringTowxString(package_r.msg()) << _("\n");
 							break;
 						case 1:
-							(*TextCtrl1) << StringTowxString(package_r.m_susername()) + _(": login stage(0x00) = ") << package_r.m_login_stage() << _("\n");
+							(*RichTextCtrl1) << StringTowxString(package_r.m_susername()) + _(": login stage(0x00) = ") << package_r.m_login_stage() << _("\n");
 							m_pPackage->set_m_susername( wxStringToString( TextCtrl6_username->GetValue() ) );
 							m_pPackage->set_m_nsock_id( package_r.m_nsock_id() );
 							m_pPackage->set_m_login_stage(2);
 							SendPackage( m_pSocket, m_pPackage );
 							break;
 						case 2:
-							(*TextCtrl1) << StringTowxString(package_r.m_susername()) + _(": login stage(0x00) = ") << package_r.m_login_stage() << _("\n");
-							(*TextCtrl1) << _("hey dude, 這世界上的 ") + TextCtrl6_username->GetValue() + _(" 只有一個...ㄎㄎ") << _("\n");
+							(*RichTextCtrl1) << StringTowxString(package_r.m_susername()) + _(": login stage(0x00) = ") << package_r.m_login_stage() << _("\n");
+							(*RichTextCtrl1) << _("hey dude, 這世界上的 ") + TextCtrl6_username->GetValue() + _(" 只有一個...ㄎㄎ") << _("\n");
 							break;
 						case 3:
-							(*TextCtrl1) << StringTowxString(package_r.m_susername()) + _(": login stage(0x00) = ") << package_r.m_login_stage() << _("\n");
+							(*RichTextCtrl1) << StringTowxString(package_r.m_susername()) + _(": login stage(0x00) = ") << package_r.m_login_stage() << _("\n");
 							if ( package_r.m_login_flag() ) {
 								m_pPackage->set_m_login_flag(true);
 								m_pPackage->set_m_update_user_flag( true );
@@ -266,54 +282,65 @@ void netchatFrame::OnSocketEvent(wxSocketEvent& event)
 								SendPackage( m_pSocket, m_pPackage );
 							}
 							else {
-								(*TextCtrl1) << _("沒收到登入旗標啦!");
+								(*RichTextCtrl1) << _("沒收到登入旗標啦!");
 							}
 							break;
 						case 4:
-							(*TextCtrl1) << StringTowxString(package_r.m_susername()) + _(": login stage(0x00) = ") << package_r.m_login_stage() << _("\n");
+							(*RichTextCtrl1) << StringTowxString(package_r.m_susername()) + _(": login stage(0x00) = ") << package_r.m_login_stage() << _("\n");
 							break;
 						case 5:
-							(*TextCtrl1) << StringTowxString(package_r.m_susername()) + _(": login stage(0x00) = ") << package_r.m_login_stage() << _("\n");
-							(*TextCtrl1) << _("login stage = ") << package_r.m_login_stage() << _("\n");
-							(*TextCtrl1) << _("update user list: ") << (package_r.m_update_user_flag()?_("true"):_("false")) << _("\n");
+							//RichTextCtrl1->SetDefaultStyle(wxTextAttr(*wxRED));
+							(*RichTextCtrl1) << StringTowxString(package_r.m_susername()) + _(": login stage(0x00) = ") << package_r.m_login_stage() << _("\n");
+							(*RichTextCtrl1) << _("login stage = ") << package_r.m_login_stage() << _("\n");
+							(*RichTextCtrl1) << _("update user list: ") << (package_r.m_update_user_flag()?_("true"):_("false")) << _("\n");
 							CheckListBox1_usetlist->Clear();//清除全部
 							for ( int i = 0; i < package_r.m_user_list_size(); i++ ) {
-								CheckListBox1_usetlist->Append( StringTowxString(package_r.m_user_list(i)) );
+								if ( StringTowxString(package_r.m_user_list(i)) != TextCtrl6_username->GetValue() ) {
+									CheckListBox1_usetlist->Append( StringTowxString(package_r.m_user_list(i)) );
+								}
 							}
 							m_pPackage->set_m_login_stage(6);
 							m_pPackage->clear_m_update_user_flag();
 							m_pPackage->set_handle( 0x69 );
-							(*TextCtrl1) << _("login successful.") << _("\n");
-							(*TextCtrl1) << _("User: ") + StringTowxString(m_pPackage->m_susername()) <<_("\n");
-							(*TextCtrl1) << _("password: ") + StringTowxString(m_pPackage->m_spassword()) <<_("\n");
-							(*TextCtrl1) << _("login stage: ") << m_pPackage->m_login_stage() <<_("\n");
-							(*TextCtrl1) << _("login flag: ") << (m_pPackage->m_login_flag()?_("true"):_("false")) <<_("\n");
-							(*TextCtrl1) << _("Update user flag: ") << (m_pPackage->m_update_user_flag()?_("true"):_("false")) <<_("\n");
-							(*TextCtrl1) << _("handle code: ") << m_pPackage->handle() <<_("\n");
-							(*TextCtrl1) << _("error code: ") << m_pPackage->m_err_code() <<_("\n");
+							(*RichTextCtrl1) << _("login successful.") << _("\n");
+							(*RichTextCtrl1) << _("User: ") + StringTowxString(m_pPackage->m_susername()) <<_("\n");
+							(*RichTextCtrl1) << _("password: ") + StringTowxString(m_pPackage->m_spassword()) <<_("\n");
+							(*RichTextCtrl1) << _("login stage: ") << m_pPackage->m_login_stage() <<_("\n");
+							(*RichTextCtrl1) << _("login flag: ") << (m_pPackage->m_login_flag()?_("true"):_("false")) <<_("\n");
+							(*RichTextCtrl1) << _("Update user flag: ") << (m_pPackage->m_update_user_flag()?_("true"):_("false")) <<_("\n");
+							(*RichTextCtrl1) << _("handle code: ") << m_pPackage->handle() <<_("\n");
+							(*RichTextCtrl1) << _("error code: ") << m_pPackage->m_err_code() <<_("\n");
 							Timer1.Start(2000, true);
 							break;
 						case 6:
-							(*TextCtrl1) << StringTowxString(package_r.m_susername()) + _(": login stage(0x00) = ") << package_r.m_login_stage() << _("\n");
+							(*RichTextCtrl1) << StringTowxString(package_r.m_susername()) + _(": login stage(0x00) = ") << package_r.m_login_stage() << _("\n");
 							break;
 						default:
-							(*TextCtrl1) << StringTowxString(package_r.m_susername()) + _(": login stage(0x00) = ") << package_r.m_login_stage() << _("\n");
+							(*RichTextCtrl1) << StringTowxString(package_r.m_susername()) + _(": login stage(0x00) = ") << package_r.m_login_stage() << _("\n");
 							break;
 					}
 					break;
 				case 0x69: //已登入
-					(*TextCtrl1) << StringTowxString(package_r.m_susername()) << _("\n")
-								 << StringTowxString(package_r.msg()) << _("\n");
+					colour_str = StringTowxString( package_r.colour() );
+					colour_custom.Set( colour_str );
+					RichTextCtrl1->BeginTextColour( colour_custom );
+					RichTextCtrl1->WriteText(_("[ ") + StringTowxString(package_r.m_susername()) + _(" ]:"));
+					RichTextCtrl1->Newline();
+					RichTextCtrl1->WriteText(StringTowxString(package_r.msg()));
+					RichTextCtrl1->BeginLeftIndent(30);
+					RichTextCtrl1->Newline();
+					RichTextCtrl1->EndRightIndent();
+					RichTextCtrl1->EndTextColour();
 					RequestUserAttention();
 					break;
 				case 0x31: //其他使用者登入
-					(*TextCtrl1) << StringTowxString(package_r.m_susername()) + _(": 有人登入了") << _("\n");
+					//(*RichTextCtrl1) << StringTowxString(package_r.m_susername()) + _(": 有人登入了") << _("\n");
 					if ( package_r.m_user_list_size() == 1 ) {
 						CheckListBox1_usetlist->Append( StringTowxString(package_r.m_user_list( 0 )) );
 					}
 					break;
 				case 0x13: //其他使用者登出
-					(*TextCtrl1) << StringTowxString(package_r.m_susername()) + _(": 有人登出了") << _("\n");
+					//(*RichTextCtrl1) << StringTowxString(package_r.m_susername()) + _(": 有人登出了") << _("\n");
 					for ( size_t i = 0; i < CheckListBox1_usetlist->GetCount(); i++ ) {
 						if ( package_r.m_user_list_size() == 1 ) {
 							if ( CheckListBox1_usetlist->GetString(i) == StringTowxString( package_r.m_user_list(0) ) ) {
@@ -321,102 +348,13 @@ void netchatFrame::OnSocketEvent(wxSocketEvent& event)
 							}
 						}
 						else {
-							(*TextCtrl1) << _("刪除列表應該只有一人才對...") << _("\n");
+							(*RichTextCtrl1) << _("刪除列表應該只有一人才對...") << _("\n");
 						}
 					}
 					break;
 				default:
 					break;
 			}
-//			if ( !package_r.m_login_flag() || (package_r.m_login_stage() < 6) ) {
-//				switch ( package_r.m_login_stage() )
-//				{
-//					case 1:
-//						(*TextCtrl1) << _("login stage = ") << package_r.m_login_stage() << _("\n");
-//						m_pPackage->set_m_susername( wxStringToString( TextCtrl6_username->GetValue() ) );
-//						//m_pPackage->set_m_spassword( wxStringToString( TextCtrl7_passwd->GetValue() ) );
-//						m_pPackage->set_m_spassword( "7533967" );
-//						m_pPackage->set_m_login_stage(2);
-//						SendPackage( m_pSocket, m_pPackage );
-//						break;
-//					case 2:
-//						(*TextCtrl1) << _("login stage = ") << package_r.m_login_stage() << _("\n");
-//						break;
-//					case 3:
-//						(*TextCtrl1) << _("Sock ID = ") << static_cast<long>(m_pPackage->m_nsock_id()) << _("\n");
-//						(*TextCtrl1) << _("Server idx = ") << m_pPackage->m_nindex() << _("\n");
-//						(*TextCtrl1) << _("username = ") << StringTowxString( m_pPackage->m_susername() ) << _("\n");
-//						(*TextCtrl1) << _("passwd = ") << StringTowxString( m_pPackage->m_spassword() ) << _("\n");
-//						(*TextCtrl1) << _("login result = ") << (int)m_pPackage->m_login_flag() << _("\n");
-//						(*TextCtrl1) << _("login stage = ") << m_pPackage->m_login_stage() << _("\n");
-//						(*TextCtrl1) << _("Err code = ") << m_pPackage->m_err_code() << _("\n");
-//						(*TextCtrl1) << _("update_user_flag = ") << m_pPackage->m_update_user_flag() << _("\n");
-//						m_pPackage->set_m_update_user_flag(true); //要求更新登入列表
-//						if ( package_r.m_login_flag() ) {
-//							m_pPackage->set_m_login_stage(4);
-//							StaticBoxSizer2->Show(false);
-//							Button2_logout->Show();
-//							Button2_logout->Enable();
-//							BoxSizer2->RecalcSizes();
-//						}
-//						else {
-//							StaticBoxSizer2->Show(true);
-//							BoxSizer2->RecalcSizes();
-//						}
-//						//(*TextCtrl1) << _("Sock ID = ") << static_cast<long>(m_pPackage->m_nsock_id()) << _("\n");
-//						//(*TextCtrl1) << _("Server idx = ") << m_pPackage->m_nindex() << _("\n");
-//						//(*TextCtrl1) << _("username = ") << StringTowxString( m_pPackage->m_susername() ) << _("\n");
-//						//(*TextCtrl1) << _("passwd = ") << StringTowxString( m_pPackage->m_spassword() ) << _("\n");
-//						//(*TextCtrl1) << _("login result = ") << (int)m_pPackage->m_login_flag() << _("\n");
-//						//(*TextCtrl1) << _("login stage = ") << m_pPackage->m_login_stage() << _("\n");
-//						//(*TextCtrl1) << _("Err code = ") << m_pPackage->m_err_code() << _("\n");
-//						//(*TextCtrl1) << _("update_user_flag = ") << m_pPackage->m_update_user_flag() << _("\n");
-//						/**
-//						送出封包
-//						login_stage = 4
-//						update_user_flag = true
-//						*/
-//						SendPackage( m_pSocket, m_pPackage );
-//						break;
-//					case 4:
-//						(*TextCtrl1) << _("login stage = ") << package_r.m_login_stage() << _("\n");
-//						break;
-//					case 5:
-//						(*TextCtrl1) << _("login stage = ") << package_r.m_login_stage() << _("\n");
-//						(*TextCtrl1) << _("update user list: ") << (int)package_r.m_update_user_flag() << _("\n");
-//						CheckListBox1_usetlist->Clear();//清除全部
-//						for ( int i = 0; i < package_r.m_user_list_size(); i++ ) {
-//							CheckListBox1_usetlist->Append( StringTowxString(package_r.m_user_list(i)) );
-//						}
-//						m_pPackage->set_m_login_stage(6);
-//						m_pPackage->clear_m_update_user_flag();
-//						break;
-//					default:
-//						(*TextCtrl1) << _("login stage = ") << package_r.m_login_stage() << _("\n");
-//						(*TextCtrl1) << _("sockid = ") << (long)package_r.m_nsock_id() << _("\n");
-//						break;
-//				}
-//			}
-//			else {
-//				if ( package_r.m_update_user_flag() ) { //更新所有登入者的使用者列表
-//					CheckListBox1_usetlist->Append( StringTowxString( package_r.m_starget_user(0) ) );
-//					m_pPackage->clear_m_update_user_flag();
-//				}
-//				else{
-//					std::string VV = std::string("DEL0x99H");
-//					(*TextCtrl1) << StringTowxString(package_r.m_susername()) << _("\n");
-//					if ( (package_r.m_susername().compare("DEL0x99H")) && (package_r.m_spassword().compare("DEL0x99H")) ) {
-//						CheckListBox1_usetlist->Delete( (unsigned int)package_r.m_nindex() );
-//						(*TextCtrl1) << _("del.") << _("\n");
-//					}
-//					else
-//					{
-//						(*TextCtrl1) << StringTowxString(package_r.m_susername()) << _("\n")
-//								 << StringTowxString(package_r.msg()) << _("\n");
-//						RequestUserAttention();
-//					}
-//				}
-//			}
 			break;
 		}
 		case wxSOCKET_OUTPUT:
@@ -450,18 +388,32 @@ void netchatFrame::OnButton1Click(wxCommandEvent& event)
 
 void netchatFrame::OnTextCtrl2TextEnter(wxCommandEvent& event)
 {
-//	(*TextCtrl1) << _(">>") << _("\n");
-//	(*TextCtrl1) << _("Sock ID = ") << static_cast<long>(m_pPackage->m_nsock_id()) << _("\n");
-//	(*TextCtrl1) << _("Server idx = ") << m_pPackage->m_nindex() << _("\n");
-//	(*TextCtrl1) << _("username = ") << StringTowxString( m_pPackage->m_susername() ) << _("\n");
-//	(*TextCtrl1) << _("passwd = ") << StringTowxString( m_pPackage->m_spassword() ) << _("\n");
-//	(*TextCtrl1) << _("login result = ") << (int)m_pPackage->m_login_flag() << _("\n");
-//	(*TextCtrl1) << _("login stage = ") << m_pPackage->m_login_stage() << _("\n");
-//	(*TextCtrl1) << _("Err code = ") << m_pPackage->m_err_code() << _("\n");
-//	(*TextCtrl1) << _("update_user_flag = ") << m_pPackage->m_update_user_flag() << _("\n");
+//	(*RichTextCtrl1) << _(">>") << _("\n");
+//	(*RichTextCtrl1) << _("Sock ID = ") << static_cast<long>(m_pPackage->m_nsock_id()) << _("\n");
+//	(*RichTextCtrl1) << _("Server idx = ") << m_pPackage->m_nindex() << _("\n");
+//	(*RichTextCtrl1) << _("username = ") << StringTowxString( m_pPackage->m_susername() ) << _("\n");
+//	(*RichTextCtrl1) << _("passwd = ") << StringTowxString( m_pPackage->m_spassword() ) << _("\n");
+//	(*RichTextCtrl1) << _("login result = ") << (int)m_pPackage->m_login_flag() << _("\n");
+//	(*RichTextCtrl1) << _("login stage = ") << m_pPackage->m_login_stage() << _("\n");
+//	(*RichTextCtrl1) << _("Err code = ") << m_pPackage->m_err_code() << _("\n");
+//	(*RichTextCtrl1) << _("update_user_flag = ") << m_pPackage->m_update_user_flag() << _("\n");
 	if ( !TextCtrl2->GetValue().IsEmpty() ) {
-		(*TextCtrl1) << TextCtrl6_username->GetValue() + _(":") << _("\n");
-		(*TextCtrl1) << TextCtrl2->GetValue() << _("\n") ;
+		//RichTextCtrl1->Freeze();
+		RichTextCtrl1->BeginTextColour( m_colour );
+		RichTextCtrl1->WriteText(_("[ ") + TextCtrl6_username->GetValue() + _(" ]:"));
+		
+		RichTextCtrl1->Newline();
+		RichTextCtrl1->WriteText(TextCtrl2->GetValue());
+		RichTextCtrl1->BeginLeftIndent(30);
+		RichTextCtrl1->Newline();
+		RichTextCtrl1->EndLeftIndent();
+		RichTextCtrl1->EndTextColour();
+		RichTextCtrl1->ScrollIntoView(RichTextCtrl1->GetCaretPosition(),WXK_PAGEDOWN);
+		//RichTextCtrl1->ShowPosition( RichTextCtrl1->GetLastPosition() );
+		//RichTextCtrl1->Thaw();
+		
+		//(*RichTextCtrl1) << TextCtrl6_username->GetValue() + _(":") << _("\n");
+		//(*RichTextCtrl1) << TextCtrl2->GetValue() << _("\n") ;
 		m_pPackage->clear_m_starget_user();
 		for ( size_t i = 0; i < CheckListBox1_usetlist->GetCount(); i++ ) {
 			if ( CheckListBox1_usetlist->IsChecked(i) ) {
@@ -469,8 +421,10 @@ void netchatFrame::OnTextCtrl2TextEnter(wxCommandEvent& event)
 				m_pPackage->add_m_starget_user( wxStringToString( user_tmp ) );
 			}
 		}
+		wxString colour_tmp = m_colour.GetAsString();
+		m_pPackage->set_colour( wxStringToString( colour_tmp ) );
 		m_pPackage->set_m_susername( wxStringToString( TextCtrl6_username->GetValue() ) );
-		m_pPackage->set_msg( wxStringToString( _("　") + TextCtrl2->GetValue() ) );
+		m_pPackage->set_msg( wxStringToString( TextCtrl2->GetValue() ) );
 		SendPackage( m_pSocket, m_pPackage );
 		TextCtrl2->Clear();
 	}
@@ -533,3 +487,30 @@ void netchatFrame::OnTimer1Trigger(wxTimerEvent& event)
 {
 	TextCtrl2->Enable();
 }
+
+void netchatFrame::OnColourPickerCtrl1ColourChanged(wxColourPickerEvent& event)
+{
+	m_colour = ColourPickerCtrl1->GetColour();
+}
+
+void netchatFrame::showtext(wxTextCtrl* tc, wxString s)
+{
+	// HACK: Under Windows (using wxTE_RICH2) we have trouble ensuring that the last
+    // entered line is really at the bottom of the screen. We jump through some
+    // hoops to get this working.
+ 
+    // Count number of newlines (i.e lines)
+//    int lines = 0;
+//    const char* cstr = s.c_str();
+//    for( ; *cstr ; ++cstr )
+//        if( *cstr == '\n' )
+//            ++lines;
+ 
+    // Dance...
+    tc->Freeze();                 // Freeze the window to prevent scrollbar jumping
+    tc->AppendText( s );          // Add the text
+    tc->ScrollLines( 2 + 1 ); // Scroll down correct number of lines + one (the extra line is important for some cases!)
+    tc->ShowPosition( tc->GetLastPosition() ); // Ensure the last line is shown at the very bottom of the window
+    tc->Thaw();                   // Allow the window to redraw
+}
+

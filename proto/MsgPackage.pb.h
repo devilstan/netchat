@@ -213,6 +213,18 @@ class MsgPackage : public ::google::protobuf::Message {
   inline ::google::protobuf::uint32 ver() const;
   inline void set_ver(::google::protobuf::uint32 value);
 
+  // required string colour = 14;
+  inline bool has_colour() const;
+  inline void clear_colour();
+  static const int kColourFieldNumber = 14;
+  inline const ::std::string& colour() const;
+  inline void set_colour(const ::std::string& value);
+  inline void set_colour(const char* value);
+  inline void set_colour(const char* value, size_t size);
+  inline ::std::string* mutable_colour();
+  inline ::std::string* release_colour();
+  inline void set_allocated_colour(::std::string* colour);
+
   // @@protoc_insertion_point(class_scope:MsgPackage)
  private:
   inline void set_has_m_nsock_id();
@@ -237,6 +249,8 @@ class MsgPackage : public ::google::protobuf::Message {
   inline void clear_has_handle();
   inline void set_has_ver();
   inline void clear_has_ver();
+  inline void set_has_colour();
+  inline void clear_has_colour();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
@@ -252,10 +266,11 @@ class MsgPackage : public ::google::protobuf::Message {
   ::google::protobuf::int32 m_err_code_;
   ::google::protobuf::int32 handle_;
   ::google::protobuf::RepeatedPtrField< ::std::string> m_user_list_;
+  ::std::string* colour_;
   ::google::protobuf::uint32 ver_;
 
   mutable int _cached_size_;
-  ::google::protobuf::uint32 _has_bits_[(13 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(14 + 31) / 32];
 
   friend void  protobuf_AddDesc_MsgPackage_2eproto();
   friend void protobuf_AssignDesc_MsgPackage_2eproto();
@@ -743,6 +758,76 @@ inline ::google::protobuf::uint32 MsgPackage::ver() const {
 inline void MsgPackage::set_ver(::google::protobuf::uint32 value) {
   set_has_ver();
   ver_ = value;
+}
+
+// required string colour = 14;
+inline bool MsgPackage::has_colour() const {
+  return (_has_bits_[0] & 0x00002000u) != 0;
+}
+inline void MsgPackage::set_has_colour() {
+  _has_bits_[0] |= 0x00002000u;
+}
+inline void MsgPackage::clear_has_colour() {
+  _has_bits_[0] &= ~0x00002000u;
+}
+inline void MsgPackage::clear_colour() {
+  if (colour_ != &::google::protobuf::internal::kEmptyString) {
+    colour_->clear();
+  }
+  clear_has_colour();
+}
+inline const ::std::string& MsgPackage::colour() const {
+  return *colour_;
+}
+inline void MsgPackage::set_colour(const ::std::string& value) {
+  set_has_colour();
+  if (colour_ == &::google::protobuf::internal::kEmptyString) {
+    colour_ = new ::std::string;
+  }
+  colour_->assign(value);
+}
+inline void MsgPackage::set_colour(const char* value) {
+  set_has_colour();
+  if (colour_ == &::google::protobuf::internal::kEmptyString) {
+    colour_ = new ::std::string;
+  }
+  colour_->assign(value);
+}
+inline void MsgPackage::set_colour(const char* value, size_t size) {
+  set_has_colour();
+  if (colour_ == &::google::protobuf::internal::kEmptyString) {
+    colour_ = new ::std::string;
+  }
+  colour_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* MsgPackage::mutable_colour() {
+  set_has_colour();
+  if (colour_ == &::google::protobuf::internal::kEmptyString) {
+    colour_ = new ::std::string;
+  }
+  return colour_;
+}
+inline ::std::string* MsgPackage::release_colour() {
+  clear_has_colour();
+  if (colour_ == &::google::protobuf::internal::kEmptyString) {
+    return NULL;
+  } else {
+    ::std::string* temp = colour_;
+    colour_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    return temp;
+  }
+}
+inline void MsgPackage::set_allocated_colour(::std::string* colour) {
+  if (colour_ != &::google::protobuf::internal::kEmptyString) {
+    delete colour_;
+  }
+  if (colour) {
+    set_has_colour();
+    colour_ = colour;
+  } else {
+    clear_has_colour();
+    colour_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+  }
 }
 
 

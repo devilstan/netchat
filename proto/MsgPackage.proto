@@ -12,4 +12,5 @@ message MsgPackage {
 	required int32 handle = 11;
 	repeated string m_user_list = 12;
 	required uint32 Ver = 13;
+	required string colour = 14;
 }

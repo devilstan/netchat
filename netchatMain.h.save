@@ -17,9 +17,11 @@
 #include <wx/textctrl.h>
 #include <wx/checklst.h>
 #include <wx/panel.h>
+#include <wx/richtext/richtextctrl.h>
 #include <wx/button.h>
 #include <wx/frame.h>
 #include <wx/timer.h>
+#include <wx/clrpicker.h>
 #include <wx/statusbr.h>
 //*)
 
@@ -44,6 +46,7 @@ class netchatFrame: public wxFrame
         void OnButton3_logonClick(wxCommandEvent& event);
         void OnButton2_logoutClick(wxCommandEvent& event);
         void OnTimer1Trigger(wxTimerEvent& event);
+        void OnColourPickerCtrl1ColourChanged(wxColourPickerEvent& event);
         //*)
 
         void OnSocketEvent(wxSocketEvent& event);
@@ -51,6 +54,7 @@ class netchatFrame: public wxFrame
         MsgPackage ReadPackage(wxSocketBase* sock);
         std::string wxStringToString( const wxString& );
         wxString StringTowxString( const std::string& );
+        void showtext(wxTextCtrl* tc, wxString s);
 
         //(*Identifiers(netchatFrame)
         static const long ID_STATICTEXT1;
@@ -60,10 +64,11 @@ class netchatFrame: public wxFrame
         static const long ID_BUTTON3;
         static const long ID_TEXTCTRL3;
         static const long ID_BUTTON2;
-        static const long ID_TEXTCTRL1;
+        static const long ID_RICHTEXTCTRL1;
         static const long ID_CHECKLISTBOX1;
         static const long ID_TEXTCTRL2;
-        static const long ID_BUTTON1;
+        static const long ID_STATICTEXT3;
+        static const long ID_COLOURPICKERCTRL1;
         static const long ID_PANEL1;
         static const long idMenuQuit;
         static const long idMenuAbout;
@@ -77,24 +82,26 @@ class netchatFrame: public wxFrame
         wxStaticBoxSizer* StaticBoxSizer2;
         wxStaticText* StaticText2;
         wxTextCtrl* TextCtrl6_username;
+        wxRichTextCtrl* RichTextCtrl1;
         wxTextCtrl* TextCtrl7_passwd;
-        wxButton* Button1;
         wxCheckListBox* CheckListBox1_usetlist;
         wxButton* Button2_logout;
         wxPanel* Panel1;
         wxStaticText* StaticText1;
+        wxColourPickerCtrl* ColourPickerCtrl1;
         wxBoxSizer* BoxSizer2;
+        wxStaticText* StaticText3;
         wxButton* Button3_logon;
         wxStatusBar* StatusBar1;
         wxTextCtrl* TextCtrl2;
         wxBoxSizer* BoxSizer1;
-        wxTextCtrl* TextCtrl1;
         wxTextCtrl* TextCtrl3;
         wxTimer Timer1;
         //*)
 
         wxSocketClient* m_pSocket;
         MsgPackage *m_pPackage;
+        wxColour m_colour;
         size_t m_ver;
 
         DECLARE_EVENT_TABLE()
