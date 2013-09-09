@@ -3608,7 +3608,7 @@
 1376351468 c:\documents and settings\administrator\my documents\my project\netchat\netchatapp.h
 	<wx/app.h>
 
-1378430828 c:\documents and settings\administrator\my documents\my project\netchat\netchatmain.h
+1378725091 c:\documents and settings\administrator\my documents\my project\netchat\netchatmain.h
 	<wx/sizer.h>
 	<wx/stattext.h>
 	<wx/menu.h>
@@ -3617,6 +3617,7 @@
 	<wx/panel.h>
 	<wx/button.h>
 	<wx/frame.h>
+	<wx/timer.h>
 	<wx/statusbr.h>
 	<wx/socket.h>
 	"proto/MsgPackage.pb.h"
@@ -3630,7 +3631,7 @@
 	<google/protobuf/extension_set.h>
 	<google/protobuf/unknown_field_set.h>
 
-1378654540 source:c:\documents and settings\administrator\my documents\my project\netchat\netchatmain.cpp
+1378725091 source:c:\documents and settings\administrator\my documents\my project\netchat\netchatmain.cpp
 	"wx_pch.h"
 	"netchatMain.h"
 	<wx/msgdlg.h>
@@ -3653,7 +3654,7 @@
 	<google/protobuf/reflection_ops.h>
 	<google/protobuf/wire_format.h>
 
-1378470984 c:\documents and settings\administrator\my documents\my project\netchat\proto\msgpackage.pb.h
+1378723006 c:\documents and settings\administrator\my documents\my project\netchat\proto\msgpackage.pb.h
 	<string>
 	<google/protobuf/stubs/common.h>
 	<google/protobuf/generated_message_util.h>
@@ -3662,7 +3663,7 @@
 	<google/protobuf/extension_set.h>
 	<google/protobuf/unknown_field_set.h>
 
-1378470984 source:c:\documents and settings\administrator\my documents\my project\netchat\proto\msgpackage.pb.cc
+1378723006 source:c:\documents and settings\administrator\my documents\my project\netchat\proto\msgpackage.pb.cc
 	"MsgPackage.pb.h"
 	<algorithm>
 	<google/protobuf/stubs/common.h>
@@ -3691,7 +3692,7 @@
 1376351468 p:\tmpe\000448\netchat\netchatapp.h
 	<wx/app.h>
 
-1378430826 p:\tmpe\000448\netchat\netchatmain.h
+1378700134 p:\tmpe\000448\netchat\netchatmain.h
 	<wx/sizer.h>
 	<wx/stattext.h>
 	<wx/menu.h>
@@ -3700,11 +3701,12 @@
 	<wx/panel.h>
 	<wx/button.h>
 	<wx/frame.h>
+	<wx/timer.h>
 	<wx/statusbr.h>
 	<wx/socket.h>
 	"proto/MsgPackage.pb.h"
 
-1378431082 p:\tmpe\000448\netchat\proto\msgpackage.pb.h
+1378470986 p:\tmpe\000448\netchat\proto\msgpackage.pb.h
 	<string>
 	<google/protobuf/stubs/common.h>
 	<google/protobuf/generated_message_util.h>
@@ -3713,7 +3715,7 @@
 	<google/protobuf/extension_set.h>
 	<google/protobuf/unknown_field_set.h>
 
-1378441528 source:p:\tmpe\000448\netchat\netchatmain.cpp
+1378701145 source:p:\tmpe\000448\netchat\netchatmain.cpp
 	"wx_pch.h"
 	"netchatMain.h"
 	<wx/msgdlg.h>
@@ -3724,7 +3726,7 @@
 1353751060 source:p:\tmpe\000448\netchat\resource.rc
 	"wx/msw/wx.rc"
 
-1378431082 source:p:\tmpe\000448\netchat\proto\msgpackage.pb.cc
+1378470986 source:p:\tmpe\000448\netchat\proto\msgpackage.pb.cc
 	"MsgPackage.pb.h"
 	<algorithm>
 	<google/protobuf/stubs/common.h>

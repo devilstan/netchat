@@ -62,6 +62,7 @@ const long netchatFrame::ID_PANEL1 = wxNewId();
 const long netchatFrame::idMenuQuit = wxNewId();
 const long netchatFrame::idMenuAbout = wxNewId();
 const long netchatFrame::ID_STATUSBAR1 = wxNewId();
+const long netchatFrame::ID_TIMER1 = wxNewId();
 //*)
 
 const long netchatFrame::ID_SOCKET = wxNewId();
@@ -104,7 +105,6 @@ netchatFrame::netchatFrame(wxWindow* parent,wxWindowID id)
     StaticBoxSizer1->Add(TextCtrl3, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     Button2_logout = new wxButton(Panel1, ID_BUTTON2, _("logout"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON2"));
     Button2_logout->Disable();
-    Button2_logout->Hide();
     StaticBoxSizer1->Add(Button2_logout, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     BoxSizer2->Add(StaticBoxSizer1, 0, wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_TOP, 5);
     BoxSizer3 = new wxBoxSizer(wxHORIZONTAL);
@@ -142,6 +142,7 @@ netchatFrame::netchatFrame(wxWindow* parent,wxWindowID id)
     StatusBar1->SetFieldsCount(1,__wxStatusBarWidths_1);
     StatusBar1->SetStatusStyles(1,__wxStatusBarStyles_1);
     SetStatusBar(StatusBar1);
+    Timer1.SetOwner(this, ID_TIMER1);
     BoxSizer1->Fit(this);
     BoxSizer1->SetSizeHints(this);
 
@@ -151,10 +152,12 @@ netchatFrame::netchatFrame(wxWindow* parent,wxWindowID id)
     Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&netchatFrame::OnButton1Click);
     Connect(idMenuQuit,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&netchatFrame::OnQuit);
     Connect(idMenuAbout,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&netchatFrame::OnAbout);
+    Connect(ID_TIMER1,wxEVT_TIMER,(wxObjectEventFunction)&netchatFrame::OnTimer1Trigger);
     //*)
     Connect(ID_SOCKET, wxEVT_SOCKET, (wxObjectEventFunction)&netchatFrame::OnSocketEvent );
     m_pSocket =  NULL;
     m_pPackage = new MsgPackage();
+    m_ver = 20130909;
 }
 
 netchatFrame::~netchatFrame()
@@ -189,6 +192,10 @@ void netchatFrame::OnButton3_logonClick(wxCommandEvent& event)
 	m_pSocket->SetEventHandler(*this, ID_SOCKET);
 	m_pSocket->SetNotify(wxSOCKET_CONNECTION|wxSOCKET_INPUT_FLAG|wxSOCKET_LOST_FLAG);
 	m_pSocket->Notify(true);
+	//m_pPackage->clear_m_nsock_id()
+	//m_pPackage->set_m_login_flag(false);
+	m_pPackage->set_m_susername( wxStringToString( TextCtrl6_username->GetValue() ) );
+	m_pPackage->set_ver( m_ver );
 	m_pSocket->Connect(addr, false);
 	m_pSocket->WaitOnConnect(5);
 	if ( !m_pSocket->IsConnected() ) {
@@ -204,7 +211,7 @@ void netchatFrame::OnButton3_logonClick(wxCommandEvent& event)
 		TextCtrl3->Enable(false);
 		TextCtrl6_username->Enable(false);
 		TextCtrl7_passwd->Enable(false);
-		m_pPackage->set_m_susername( wxStringToString( TextCtrl6_username->GetValue() ) );
+		//m_pPackage->Clear();
 	}
 	UpdateWindowUI();
 }
@@ -238,6 +245,7 @@ void netchatFrame::OnSocketEvent(wxSocketEvent& event)
 					{
 						case 0:
 							(*TextCtrl1) << StringTowxString(package_r.m_susername()) + _(": login stage(0x00) = ") << package_r.m_login_stage() << _("\n");
+							(*TextCtrl1) << StringTowxString(package_r.msg()) << _("\n");
 							break;
 						case 1:
 							(*TextCtrl1) << StringTowxString(package_r.m_susername()) + _(": login stage(0x00) = ") << package_r.m_login_stage() << _("\n");
@@ -284,6 +292,7 @@ void netchatFrame::OnSocketEvent(wxSocketEvent& event)
 							(*TextCtrl1) << _("Update user flag: ") << (m_pPackage->m_update_user_flag()?_("true"):_("false")) <<_("\n");
 							(*TextCtrl1) << _("handle code: ") << m_pPackage->handle() <<_("\n");
 							(*TextCtrl1) << _("error code: ") << m_pPackage->m_err_code() <<_("\n");
+							Timer1.Start(2000, true);
 							break;
 						case 6:
 							(*TextCtrl1) << StringTowxString(package_r.m_susername()) + _(": login stage(0x00) = ") << package_r.m_login_stage() << _("\n");
@@ -294,10 +303,28 @@ void netchatFrame::OnSocketEvent(wxSocketEvent& event)
 					}
 					break;
 				case 0x69: //已登入
+					(*TextCtrl1) << StringTowxString(package_r.m_susername()) << _("\n")
+								 << StringTowxString(package_r.msg()) << _("\n");
+					RequestUserAttention();
 					break;
 				case 0x31: //其他使用者登入
+					(*TextCtrl1) << StringTowxString(package_r.m_susername()) + _(": 有人登入了") << _("\n");
+					if ( package_r.m_user_list_size() == 1 ) {
+						CheckListBox1_usetlist->Append( StringTowxString(package_r.m_user_list( 0 )) );
+					}
 					break;
 				case 0x13: //其他使用者登出
+					(*TextCtrl1) << StringTowxString(package_r.m_susername()) + _(": 有人登出了") << _("\n");
+					for ( size_t i = 0; i < CheckListBox1_usetlist->GetCount(); i++ ) {
+						if ( package_r.m_user_list_size() == 1 ) {
+							if ( CheckListBox1_usetlist->GetString(i) == StringTowxString( package_r.m_user_list(0) ) ) {
+								CheckListBox1_usetlist->Delete( i );
+							}
+						}
+						else {
+							(*TextCtrl1) << _("刪除列表應該只有一人才對...") << _("\n");
+						}
+					}
 					break;
 				default:
 					break;
@@ -435,7 +462,7 @@ void netchatFrame::OnTextCtrl2TextEnter(wxCommandEvent& event)
 //	(*TextCtrl1) << _("update_user_flag = ") << m_pPackage->m_update_user_flag() << _("\n");
 	if ( !TextCtrl2->GetValue().IsEmpty() ) {
 		(*TextCtrl1) << TextCtrl6_username->GetValue() + _(":") << _("\n");
-		(*TextCtrl1) << TextCtrl2->GetValue();
+		(*TextCtrl1) << TextCtrl2->GetValue() << _("\n") ;
 		m_pPackage->clear_m_starget_user();
 		for ( size_t i = 0; i < CheckListBox1_usetlist->GetCount(); i++ ) {
 			if ( CheckListBox1_usetlist->IsChecked(i) ) {
@@ -496,14 +523,14 @@ wxString netchatFrame::StringTowxString(const std::string& s)
 void netchatFrame::OnButton2_logoutClick(wxCommandEvent& event)
 {
 	if ( m_pSocket->Close() ) {
-		StaticBoxSizer2->Show(true);
-		BoxSizer2->RecalcSizes();
-		Button3_logon->Enable();
-		TextCtrl3->Enable();
-		TextCtrl6_username->Enable();
-		TextCtrl7_passwd->Enable();
-		Button2_logout->Enable(false);
-		Button2_logout->Hide();
+
+		Timer1.Start(3000, true);
+
 	}
-	UpdateWindowUI();
+	//UpdateWindowUI();
+}
+
+void netchatFrame::OnTimer1Trigger(wxTimerEvent& event)
+{
+	TextCtrl2->Enable();
 }

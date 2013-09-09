@@ -66,7 +66,6 @@
 									<object class="wxButton" name="ID_BUTTON2" variable="Button2_logout" member="yes">
 										<label>logout</label>
 										<enabled>0</enabled>
-										<hidden>1</hidden>
 										<handler function="OnButton2_logoutClick" entry="EVT_BUTTON" />
 									</object>
 									<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
@@ -156,6 +155,9 @@
 			<fields>1</fields>
 			<widths>-1</widths>
 			<styles>wxSB_NORMAL</styles>
+		</object>
+		<object class="wxTimer" name="ID_TIMER1" variable="Timer1" member="yes">
+			<handler function="OnTimer1Trigger" entry="EVT_TIMER" />
 		</object>
 	</object>
 </wxsmith>

@@ -206,6 +206,13 @@ class MsgPackage : public ::google::protobuf::Message {
   inline const ::google::protobuf::RepeatedPtrField< ::std::string>& m_user_list() const;
   inline ::google::protobuf::RepeatedPtrField< ::std::string>* mutable_m_user_list();
 
+  // required uint32 Ver = 13;
+  inline bool has_ver() const;
+  inline void clear_ver();
+  static const int kVerFieldNumber = 13;
+  inline ::google::protobuf::uint32 ver() const;
+  inline void set_ver(::google::protobuf::uint32 value);
+
   // @@protoc_insertion_point(class_scope:MsgPackage)
  private:
   inline void set_has_m_nsock_id();
@@ -228,6 +235,8 @@ class MsgPackage : public ::google::protobuf::Message {
   inline void clear_has_m_update_user_flag();
   inline void set_has_handle();
   inline void clear_has_handle();
+  inline void set_has_ver();
+  inline void clear_has_ver();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
@@ -243,9 +252,10 @@ class MsgPackage : public ::google::protobuf::Message {
   ::google::protobuf::int32 m_err_code_;
   ::google::protobuf::int32 handle_;
   ::google::protobuf::RepeatedPtrField< ::std::string> m_user_list_;
+  ::google::protobuf::uint32 ver_;
 
   mutable int _cached_size_;
-  ::google::protobuf::uint32 _has_bits_[(12 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(13 + 31) / 32];
 
   friend void  protobuf_AddDesc_MsgPackage_2eproto();
   friend void protobuf_AssignDesc_MsgPackage_2eproto();
@@ -711,6 +721,28 @@ MsgPackage::m_user_list() const {
 inline ::google::protobuf::RepeatedPtrField< ::std::string>*
 MsgPackage::mutable_m_user_list() {
   return &m_user_list_;
+}
+
+// required uint32 Ver = 13;
+inline bool MsgPackage::has_ver() const {
+  return (_has_bits_[0] & 0x00001000u) != 0;
+}
+inline void MsgPackage::set_has_ver() {
+  _has_bits_[0] |= 0x00001000u;
+}
+inline void MsgPackage::clear_has_ver() {
+  _has_bits_[0] &= ~0x00001000u;
+}
+inline void MsgPackage::clear_ver() {
+  ver_ = 0u;
+  clear_has_ver();
+}
+inline ::google::protobuf::uint32 MsgPackage::ver() const {
+  return ver_;
+}
+inline void MsgPackage::set_ver(::google::protobuf::uint32 value) {
+  set_has_ver();
+  ver_ = value;
 }
 
 

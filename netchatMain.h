@@ -19,6 +19,7 @@
 #include <wx/panel.h>
 #include <wx/button.h>
 #include <wx/frame.h>
+#include <wx/timer.h>
 #include <wx/statusbr.h>
 //*)
 
@@ -42,6 +43,7 @@ class netchatFrame: public wxFrame
         void OnButton3Click(wxCommandEvent& event);
         void OnButton3_logonClick(wxCommandEvent& event);
         void OnButton2_logoutClick(wxCommandEvent& event);
+        void OnTimer1Trigger(wxTimerEvent& event);
         //*)
 
         void OnSocketEvent(wxSocketEvent& event);
@@ -66,6 +68,7 @@ class netchatFrame: public wxFrame
         static const long idMenuQuit;
         static const long idMenuAbout;
         static const long ID_STATUSBAR1;
+        static const long ID_TIMER1;
         //*)
 
         static const long ID_SOCKET;
@@ -87,10 +90,12 @@ class netchatFrame: public wxFrame
         wxBoxSizer* BoxSizer1;
         wxTextCtrl* TextCtrl1;
         wxTextCtrl* TextCtrl3;
+        wxTimer Timer1;
         //*)
 
         wxSocketClient* m_pSocket;
         MsgPackage *m_pPackage;
+        size_t m_ver;
 
         DECLARE_EVENT_TABLE()
 };

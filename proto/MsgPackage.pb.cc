@@ -32,7 +32,7 @@ void protobuf_AssignDesc_MsgPackage_2eproto() {
       "MsgPackage.proto");
   GOOGLE_CHECK(file != NULL);
   MsgPackage_descriptor_ = file->message_type(0);
-  static const int MsgPackage_offsets_[12] = {
+  static const int MsgPackage_offsets_[13] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgPackage, m_nsock_id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgPackage, m_nindex_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgPackage, m_susername_),
@@ -45,6 +45,7 @@ void protobuf_AssignDesc_MsgPackage_2eproto() {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgPackage, m_update_user_flag_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgPackage, handle_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgPackage, m_user_list_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgPackage, ver_),
   };
   MsgPackage_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -87,13 +88,14 @@ void protobuf_AddDesc_MsgPackage_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\020MsgPackage.proto\"\203\002\n\nMsgPackage\022\022\n\nm_n"
+    "\n\020MsgPackage.proto\"\220\002\n\nMsgPackage\022\022\n\nm_n"
     "Sock_id\030\001 \002(\r\022\020\n\010m_nIndex\030\002 \002(\005\022\023\n\013m_sUs"
     "ername\030\003 \002(\t\022\023\n\013m_sPassword\030\004 \002(\t\022\026\n\016m_s"
     "Target_user\030\005 \003(\t\022\013\n\003msg\030\006 \002(\t\022\024\n\014m_logi"
     "n_flag\030\007 \002(\010\022\025\n\rm_login_stage\030\010 \002(\005\022\022\n\nm"
     "_err_code\030\t \002(\005\022\032\n\022m_update_user_flag\030\n "
-    "\002(\010\022\016\n\006handle\030\013 \002(\005\022\023\n\013m_user_list\030\014 \003(\t", 280);
+    "\002(\010\022\016\n\006handle\030\013 \002(\005\022\023\n\013m_user_list\030\014 \003(\t"
+    "\022\013\n\003Ver\030\r \002(\r", 293);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "MsgPackage.proto", &protobuf_RegisterTypes);
   MsgPackage::default_instance_ = new MsgPackage();
@@ -123,6 +125,7 @@ const int MsgPackage::kMErrCodeFieldNumber;
 const int MsgPackage::kMUpdateUserFlagFieldNumber;
 const int MsgPackage::kHandleFieldNumber;
 const int MsgPackage::kMUserListFieldNumber;
+const int MsgPackage::kVerFieldNumber;
 #endif  // !_MSC_VER
 
 MsgPackage::MsgPackage()
@@ -151,6 +154,7 @@ void MsgPackage::SharedCtor() {
   m_err_code_ = 0;
   m_update_user_flag_ = false;
   handle_ = 0;
+  ver_ = 0u;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -219,6 +223,7 @@ void MsgPackage::Clear() {
     m_err_code_ = 0;
     m_update_user_flag_ = false;
     handle_ = 0;
+    ver_ = 0u;
   }
   m_starget_user_.Clear();
   m_user_list_.Clear();
@@ -428,6 +433,22 @@ bool MsgPackage::MergePartialFromCodedStream(
           goto handle_uninterpreted;
         }
         if (input->ExpectTag(98)) goto parse_m_user_list;
+        if (input->ExpectTag(104)) goto parse_Ver;
+        break;
+      }
+
+      // required uint32 Ver = 13;
+      case 13: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+         parse_Ver:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                 input, &ver_)));
+          set_has_ver();
+        } else {
+          goto handle_uninterpreted;
+        }
         if (input->ExpectAtEnd()) return true;
         break;
       }
@@ -530,6 +551,11 @@ void MsgPackage::SerializeWithCachedSizes(
       12, this->m_user_list(i), output);
   }
 
+  // required uint32 Ver = 13;
+  if (has_ver()) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(13, this->ver(), output);
+  }
+
   if (!unknown_fields().empty()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
@@ -621,6 +647,11 @@ void MsgPackage::SerializeWithCachedSizes(
       WriteStringToArray(12, this->m_user_list(i), target);
   }
 
+  // required uint32 Ver = 13;
+  if (has_ver()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(13, this->ver(), target);
+  }
+
   if (!unknown_fields().empty()) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         unknown_fields(), target);
@@ -700,6 +731,13 @@ int MsgPackage::ByteSize() const {
           this->handle());
     }
 
+    // required uint32 Ver = 13;
+    if (has_ver()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::UInt32Size(
+          this->ver());
+    }
+
   }
   // repeated string m_sTarget_user = 5;
   total_size += 1 * this->m_starget_user_size();
@@ -775,6 +813,9 @@ void MsgPackage::MergeFrom(const MsgPackage& from) {
     if (from.has_handle()) {
       set_handle(from.handle());
     }
+    if (from.has_ver()) {
+      set_ver(from.ver());
+    }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
@@ -792,7 +833,7 @@ void MsgPackage::CopyFrom(const MsgPackage& from) {
 }
 
 bool MsgPackage::IsInitialized() const {
-  if ((_has_bits_[0] & 0x000007ef) != 0x000007ef) return false;
+  if ((_has_bits_[0] & 0x000017ef) != 0x000017ef) return false;
 
   return true;
 }
@@ -811,6 +852,7 @@ void MsgPackage::Swap(MsgPackage* other) {
     std::swap(m_update_user_flag_, other->m_update_user_flag_);
     std::swap(handle_, other->handle_);
     m_user_list_.Swap(&other->m_user_list_);
+    std::swap(ver_, other->ver_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);

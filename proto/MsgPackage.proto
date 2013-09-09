@@ -11,4 +11,5 @@ message MsgPackage {
 	required bool m_update_user_flag = 10;
 	required int32 handle = 11;
 	repeated string m_user_list = 12;
+	required uint32 Ver = 13;
 }
