@@ -17,6 +17,8 @@
 #include <wx/menu.h>
 #include <wx/textctrl.h>
 #include <wx/checklst.h>
+#include <wx/checkbox.h>
+#include <wx/slider.h>
 #include <wx/panel.h>
 #include <wx/richtext/richtextctrl.h>
 #include <wx/button.h>
@@ -50,10 +52,16 @@ class netchatFrame: public wxFrame
         void OnColourPickerCtrl1ColourChanged(wxColourPickerEvent& event);
         void OnKeyDown(wxKeyEvent& event);
         void OnNotebook1PageChanged(wxNotebookEvent& event);
+        void OnTimer2Trigger(wxTimerEvent& event);
+        void OnSlider1CmdScrollThumbRelease(wxScrollEvent& event);
+        void OnButton10Click(wxCommandEvent& event);
+        void OnCheckBox1_testClick(wxCommandEvent& event);
+        void OnTimer3Trigger(wxTimerEvent& event);
         //*)
-        
-        //限制滑鼠事件		
+
+        //限制滑鼠事件
 		void OnEnterNotebook1() {
+			Disconnect(wxEVT_COMMAND_LEFT_CLICK);
 			//CaptureMouse();
 		}
 		void OnLeaveNotebook1() {
@@ -68,7 +76,7 @@ class netchatFrame: public wxFrame
 			StatusBar1->SetStatusText(y,1);
 			if ( m_Restricted.Contains(pos) ) {
 					WarpPointer(43, 496);
-			} 
+			}
 			else {
 				//if ( HasCapture() )
 					//ReleaseMouse();
@@ -81,6 +89,8 @@ class netchatFrame: public wxFrame
         std::string wxStringToString( const wxString& );
         wxString StringTowxString( const std::string& );
         void showtext(wxTextCtrl* tc, wxString s);
+        void showtext(wxRichTextCtrl* rtc, MsgPackage& package_tmp);
+        void showtext_local( wxRichTextCtrl* rtc);
 
         //(*Identifiers(netchatFrame)
         static const long ID_STATICTEXT1;
@@ -89,10 +99,12 @@ class netchatFrame: public wxFrame
         static const long ID_TEXTCTRL7;
         static const long ID_BUTTON3;
         static const long ID_TEXTCTRL3;
-        static const long ID_BUTTON2;
+        static const long ID_CHECKBOX1;
+        static const long ID_TEXTCTRL4;
         static const long ID_RICHTEXTCTRL1;
         static const long ID_CHECKLISTBOX1;
         static const long ID_PANEL2;
+        static const long ID_SLIDER1;
         static const long ID_TEXTCTRL1;
         static const long ID_BUTTON6;
         static const long ID_BUTTON7;
@@ -119,13 +131,17 @@ class netchatFrame: public wxFrame
         static const long idMenuAbout;
         static const long ID_STATUSBAR1;
         static const long ID_TIMER1;
+        static const long ID_TIMER2;
+        static const long ID_TIMER3;
         //*)
 
         static const long ID_SOCKET;
 
         //(*Declarations(netchatFrame)
+        wxSlider* Slider1;
         wxStaticBoxSizer* StaticBoxSizer2;
-        wxBoxSizer* BoxSizer6;
+        wxTextCtrl* TextCtrl4;
+        wxTimer Timer3;
         wxButton* Button4;
         wxNotebook* Notebook1;
         wxStaticText* StaticText2;
@@ -135,7 +151,6 @@ class netchatFrame: public wxFrame
         wxButton* Button1;
         wxButton* Button14;
         wxCheckListBox* CheckListBox1_usetlist;
-        wxButton* Button2_logout;
         wxPanel* Panel1;
         wxStaticText* StaticText1;
         wxColourPickerCtrl* ColourPickerCtrl1;
@@ -149,12 +164,14 @@ class netchatFrame: public wxFrame
         wxButton* Button11;
         wxButton* Button5;
         wxButton* Button3;
+        wxTimer Timer2;
         wxButton* Button7;
         wxStatusBar* StatusBar1;
         wxButton* Button9;
         wxTextCtrl* TextCtrl2;
         wxBoxSizer* BoxSizer1;
         wxTextCtrl* TextCtrl1;
+        wxCheckBox* CheckBox1_test;
         wxPanel* Panel2;
         wxButton* Button15;
         wxButton* Button13;
@@ -170,6 +187,8 @@ class netchatFrame: public wxFrame
         wxRect m_Restricted;
         wxPoint m_Last;
         size_t m_ver;
+        bool m_local_login_flag;
+        bool m_attention;
 
         DECLARE_EVENT_TABLE()
 };

@@ -3608,13 +3608,15 @@
 1376351468 c:\documents and settings\administrator\my documents\my project\netchat\netchatapp.h
 	<wx/app.h>
 
-1378906775 c:\documents and settings\administrator\my documents\my project\netchat\netchatmain.h
+1380122043 c:\documents and settings\administrator\my documents\my project\netchat\netchatmain.h
 	<wx/notebook.h>
 	<wx/sizer.h>
 	<wx/stattext.h>
 	<wx/menu.h>
 	<wx/textctrl.h>
 	<wx/checklst.h>
+	<wx/checkbox.h>
+	<wx/slider.h>
 	<wx/panel.h>
 	<wx/richtext/richtextctrl.h>
 	<wx/button.h>
@@ -3634,7 +3636,7 @@
 	<google/protobuf/extension_set.h>
 	<google/protobuf/unknown_field_set.h>
 
-1378906858 source:c:\documents and settings\administrator\my documents\my project\netchat\netchatmain.cpp
+1380125432 source:c:\documents and settings\administrator\my documents\my project\netchat\netchatmain.cpp
 	"wx_pch.h"
 	"netchatMain.h"
 	<wx/msgdlg.h>
@@ -3696,13 +3698,14 @@
 1376351468 p:\tmpe\000448\netchat\netchatapp.h
 	<wx/app.h>
 
-1378884391 p:\tmpe\000448\netchat\netchatmain.h
+1378943271 p:\tmpe\000448\netchat\netchatmain.h
 	<wx/notebook.h>
 	<wx/sizer.h>
 	<wx/stattext.h>
 	<wx/menu.h>
 	<wx/textctrl.h>
 	<wx/checklst.h>
+	<wx/slider.h>
 	<wx/panel.h>
 	<wx/richtext/richtextctrl.h>
 	<wx/button.h>
@@ -3722,7 +3725,7 @@
 	<google/protobuf/extension_set.h>
 	<google/protobuf/unknown_field_set.h>
 
-1378884492 source:p:\tmpe\000448\netchat\netchatmain.cpp
+1378943574 source:p:\tmpe\000448\netchat\netchatmain.cpp
 	"wx_pch.h"
 	"netchatMain.h"
 	<wx/msgdlg.h>
@@ -3873,4 +3876,73 @@
 	<wx/intl.h>
 	<wx/string.h>
 	<google/protobuf/message.h>
+
+1376351468 source:e:\netchat\wx_pch.h
+	<wx/wxprec.h>
+	<wx/wx.h>
+
+1376351468 source:e:\netchat\netchatapp.cpp
+	"wx_pch.h"
+	"netchatApp.h"
+	"netchatMain.h"
+	<wx/image.h>
+
+1376351468 e:\netchat\wx_pch.h
+	<wx/wxprec.h>
+	<wx/wx.h>
+
+1376351468 e:\netchat\netchatapp.h
+	<wx/app.h>
+
+1380122044 e:\netchat\netchatmain.h
+	<wx/notebook.h>
+	<wx/sizer.h>
+	<wx/stattext.h>
+	<wx/menu.h>
+	<wx/textctrl.h>
+	<wx/checklst.h>
+	<wx/checkbox.h>
+	<wx/slider.h>
+	<wx/panel.h>
+	<wx/richtext/richtextctrl.h>
+	<wx/button.h>
+	<wx/frame.h>
+	<wx/timer.h>
+	<wx/clrpicker.h>
+	<wx/statusbr.h>
+	<wx/socket.h>
+	"proto/MsgPackage.pb.h"
+
+1378726994 e:\netchat\proto\msgpackage.pb.h
+	<string>
+	<google/protobuf/stubs/common.h>
+	<google/protobuf/generated_message_util.h>
+	<google/protobuf/message.h>
+	<google/protobuf/repeated_field.h>
+	<google/protobuf/extension_set.h>
+	<google/protobuf/unknown_field_set.h>
+
+1380126856 source:e:\netchat\netchatmain.cpp
+	"wx_pch.h"
+	"netchatMain.h"
+	<wx/msgdlg.h>
+	<wx/font.h>
+	<wx/intl.h>
+	<wx/string.h>
+	<google/protobuf/message.h>
+
+1378726994 source:e:\netchat\proto\msgpackage.pb.cc
+	"MsgPackage.pb.h"
+	<algorithm>
+	<google/protobuf/stubs/common.h>
+	<google/protobuf/stubs/once.h>
+	<google/protobuf/io/coded_stream.h>
+	<google/protobuf/wire_format_lite_inl.h>
+	<google/protobuf/descriptor.h>
+	<google/protobuf/generated_message_reflection.h>
+	<google/protobuf/reflection_ops.h>
+	<google/protobuf/wire_format.h>
+
+1353751060 source:e:\netchat\resource.rc
+	"wx/msw/wx.rc"
 

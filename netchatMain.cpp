@@ -54,10 +54,12 @@ const long netchatFrame::ID_STATICTEXT2 = wxNewId();
 const long netchatFrame::ID_TEXTCTRL7 = wxNewId();
 const long netchatFrame::ID_BUTTON3 = wxNewId();
 const long netchatFrame::ID_TEXTCTRL3 = wxNewId();
-const long netchatFrame::ID_BUTTON2 = wxNewId();
+const long netchatFrame::ID_CHECKBOX1 = wxNewId();
+const long netchatFrame::ID_TEXTCTRL4 = wxNewId();
 const long netchatFrame::ID_RICHTEXTCTRL1 = wxNewId();
 const long netchatFrame::ID_CHECKLISTBOX1 = wxNewId();
 const long netchatFrame::ID_PANEL2 = wxNewId();
+const long netchatFrame::ID_SLIDER1 = wxNewId();
 const long netchatFrame::ID_TEXTCTRL1 = wxNewId();
 const long netchatFrame::ID_BUTTON6 = wxNewId();
 const long netchatFrame::ID_BUTTON7 = wxNewId();
@@ -84,6 +86,8 @@ const long netchatFrame::idMenuQuit = wxNewId();
 const long netchatFrame::idMenuAbout = wxNewId();
 const long netchatFrame::ID_STATUSBAR1 = wxNewId();
 const long netchatFrame::ID_TIMER1 = wxNewId();
+const long netchatFrame::ID_TIMER2 = wxNewId();
+const long netchatFrame::ID_TIMER3 = wxNewId();
 //*)
 
 const long netchatFrame::ID_SOCKET = wxNewId();
@@ -99,22 +103,24 @@ netchatFrame::netchatFrame(wxWindow* parent,wxWindowID id)
 {
     //(*Initialize(netchatFrame)
     wxBoxSizer* BoxSizer4;
-    wxBoxSizer* BoxSizer15;
+    wxBoxSizer* BoxSizer6;
+    wxBoxSizer* BoxSizer20;
     wxBoxSizer* BoxSizer5;
     wxBoxSizer* BoxSizer10;
     wxBoxSizer* BoxSizer7;
     wxBoxSizer* BoxSizer8;
+    wxBoxSizer* BoxSizer21;
     wxMenuItem* MenuItem2;
-    wxBoxSizer* BoxSizer13;
     wxMenuItem* MenuItem1;
-    wxBoxSizer* BoxSizer11;
+    wxBoxSizer* BoxSizer23;
     wxMenu* Menu1;
-    wxBoxSizer* BoxSizer16;
-    wxBoxSizer* BoxSizer12;
-    wxBoxSizer* BoxSizer14;
+    wxBoxSizer* BoxSizer18;
+    wxStaticBoxSizer* StaticBoxSizer3;
+    wxGridSizer* GridSizer1;
+    wxBoxSizer* BoxSizer17;
     wxBoxSizer* BoxSizer9;
     wxMenuBar* MenuBar1;
-    wxStaticBoxSizer* StaticBoxSizer1;
+    wxBoxSizer* BoxSizer22;
     wxBoxSizer* BoxSizer3;
     wxMenu* Menu2;
 
@@ -122,144 +128,120 @@ netchatFrame::netchatFrame(wxWindow* parent,wxWindowID id)
     BoxSizer1 = new wxBoxSizer(wxHORIZONTAL);
     Panel1 = new wxPanel(this, ID_PANEL1, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL, _T("ID_PANEL1"));
     BoxSizer2 = new wxBoxSizer(wxVERTICAL);
-    BoxSizer3 = new wxBoxSizer(wxHORIZONTAL);
-    Notebook1 = new wxNotebook(Panel1, ID_NOTEBOOK1, wxDefaultPosition, wxSize(484,516), wxNB_BOTTOM, _T("ID_NOTEBOOK1"));
+    GridSizer1 = new wxGridSizer(1, 1, 0, 0);
+    Notebook1 = new wxNotebook(Panel1, ID_NOTEBOOK1, wxDefaultPosition, wxDefaultSize, wxNB_BOTTOM, _T("ID_NOTEBOOK1"));
     Panel2 = new wxPanel(Notebook1, ID_PANEL2, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL, _T("ID_PANEL2"));
-    BoxSizer6 = new wxBoxSizer(wxVERTICAL);
-    StaticBoxSizer2 = new wxStaticBoxSizer(wxHORIZONTAL, Panel2, _("Inpit"));
+    BoxSizer3 = new wxBoxSizer(wxHORIZONTAL);
+    BoxSizer17 = new wxBoxSizer(wxVERTICAL);
+    StaticBoxSizer2 = new wxStaticBoxSizer(wxHORIZONTAL, Panel2, _("Input"));
     StaticText1 = new wxStaticText(Panel2, ID_STATICTEXT1, _("username"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT1"));
     StaticBoxSizer2->Add(StaticText1, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     TextCtrl6_username = new wxTextCtrl(Panel2, ID_TEXTCTRL6, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL6"));
-    StaticBoxSizer2->Add(TextCtrl6_username, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    StaticBoxSizer2->Add(TextCtrl6_username, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     StaticText2 = new wxStaticText(Panel2, ID_STATICTEXT2, _("passwd"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT2"));
     StaticBoxSizer2->Add(StaticText2, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     TextCtrl7_passwd = new wxTextCtrl(Panel2, ID_TEXTCTRL7, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_PASSWORD, wxDefaultValidator, _T("ID_TEXTCTRL7"));
-    StaticBoxSizer2->Add(TextCtrl7_passwd, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-    Button3_logon = new wxButton(Panel2, ID_BUTTON3, _("登入"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON3"));
+    StaticBoxSizer2->Add(TextCtrl7_passwd, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    Button3_logon = new wxButton(Panel2, ID_BUTTON3, _("登入"), wxDefaultPosition, wxSize(48,24), 0, wxDefaultValidator, _T("ID_BUTTON3"));
     StaticBoxSizer2->Add(Button3_logon, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-    BoxSizer6->Add(StaticBoxSizer2, 0, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-    StaticBoxSizer1 = new wxStaticBoxSizer(wxHORIZONTAL, Panel2, _("Server"));
-    TextCtrl3 = new wxTextCtrl(Panel2, ID_TEXTCTRL3, _("172.16.132.141"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL3"));
-    StaticBoxSizer1->Add(TextCtrl3, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-    Button2_logout = new wxButton(Panel2, ID_BUTTON2, _("logout"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON2"));
-    Button2_logout->Disable();
-    StaticBoxSizer1->Add(Button2_logout, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-    BoxSizer6->Add(StaticBoxSizer1, 0, wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_TOP, 5);
-    BoxSizer7 = new wxBoxSizer(wxHORIZONTAL);
+    BoxSizer17->Add(StaticBoxSizer2, 0, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    StaticBoxSizer3 = new wxStaticBoxSizer(wxHORIZONTAL, Panel2, _("Label"));
+    TextCtrl3 = new wxTextCtrl(Panel2, ID_TEXTCTRL3, _("127.0.0.1"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL3"));
+    StaticBoxSizer3->Add(TextCtrl3, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    CheckBox1_test = new wxCheckBox(Panel2, ID_CHECKBOX1, _("test"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX1"));
+    CheckBox1_test->SetValue(false);
+    StaticBoxSizer3->Add(CheckBox1_test, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    TextCtrl4 = new wxTextCtrl(Panel2, ID_TEXTCTRL4, _("100"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL4"));
+    StaticBoxSizer3->Add(TextCtrl4, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    BoxSizer17->Add(StaticBoxSizer3, 0, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    BoxSizer6 = new wxBoxSizer(wxHORIZONTAL);
     RichTextCtrl1 = new wxRichTextCtrl(Panel2, ID_RICHTEXTCTRL1, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxRE_MULTILINE|wxRE_READONLY, wxDefaultValidator, _T("ID_RICHTEXTCTRL1"));
     wxRichTextAttr rchtxtAttr_1;
-    BoxSizer7->Add(RichTextCtrl1, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
+    BoxSizer6->Add(RichTextCtrl1, 2, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
     CheckListBox1_usetlist = new wxCheckListBox(Panel2, ID_CHECKLISTBOX1, wxDefaultPosition, wxDefaultSize, 0, 0, wxLB_MULTIPLE, wxDefaultValidator, _T("ID_CHECKLISTBOX1"));
-    BoxSizer7->Add(CheckListBox1_usetlist, 0, wxLEFT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-    BoxSizer6->Add(BoxSizer7, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
-    Panel2->SetSizer(BoxSizer6);
-    BoxSizer6->Fit(Panel2);
-    BoxSizer6->SetSizeHints(Panel2);
+    BoxSizer6->Add(CheckListBox1_usetlist, 0, wxLEFT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    BoxSizer17->Add(BoxSizer6, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    BoxSizer3->Add(BoxSizer17, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    Panel2->SetSizer(BoxSizer3);
+    BoxSizer3->Fit(Panel2);
+    BoxSizer3->SetSizeHints(Panel2);
     Panel3 = new wxPanel(Notebook1, ID_PANEL3, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL, _T("ID_PANEL3"));
-    Panel3->SetExtraStyle( Panel3->GetExtraStyle() | wxWS_EX_BLOCK_EVENTS );
     BoxSizer8 = new wxBoxSizer(wxVERTICAL);
-    BoxSizer9 = new wxBoxSizer(wxHORIZONTAL);
-    TextCtrl1 = new wxTextCtrl(Panel3, ID_TEXTCTRL1, wxEmptyString, wxDefaultPosition, wxSize(456,82), wxTE_RIGHT, wxDefaultValidator, _T("ID_TEXTCTRL1"));
+    BoxSizer9 = new wxBoxSizer(wxVERTICAL);
+    Slider1 = new wxSlider(Panel3, ID_SLIDER1, 0, 0, 100, wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_SLIDER1"));
+    Slider1->SetThumbLength(10);
+    BoxSizer9->Add(Slider1, 0, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
+    TextCtrl1 = new wxTextCtrl(Panel3, ID_TEXTCTRL1, wxEmptyString, wxDefaultPosition, wxSize(-1,-1), wxTE_RIGHT, wxDefaultValidator, _T("ID_TEXTCTRL1"));
     wxFont TextCtrl1Font(48,wxSWISS,wxFONTSTYLE_NORMAL,wxNORMAL,false,wxEmptyString,wxFONTENCODING_DEFAULT);
     TextCtrl1->SetFont(TextCtrl1Font);
-    BoxSizer9->Add(TextCtrl1, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    BoxSizer9->Add(TextCtrl1, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     BoxSizer8->Add(BoxSizer9, 0, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     BoxSizer10 = new wxBoxSizer(wxHORIZONTAL);
-    BoxSizer11 = new wxBoxSizer(wxVERTICAL);
-    BoxSizer13 = new wxBoxSizer(wxHORIZONTAL);
+    BoxSizer7 = new wxBoxSizer(wxVERTICAL);
+    BoxSizer20 = new wxBoxSizer(wxHORIZONTAL);
     Button4 = new wxButton(Panel3, ID_BUTTON6, _("7"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON6"));
-    wxFont Button4Font(48,wxSWISS,wxFONTSTYLE_NORMAL,wxNORMAL,false,wxEmptyString,wxFONTENCODING_DEFAULT);
-    Button4->SetFont(Button4Font);
-    BoxSizer13->Add(Button4, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    BoxSizer20->Add(Button4, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     Button5 = new wxButton(Panel3, ID_BUTTON7, _("8"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON7"));
-    wxFont Button5Font(48,wxSWISS,wxFONTSTYLE_NORMAL,wxNORMAL,false,wxEmptyString,wxFONTENCODING_DEFAULT);
-    Button5->SetFont(Button5Font);
-    BoxSizer13->Add(Button5, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    BoxSizer20->Add(Button5, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     Button6 = new wxButton(Panel3, ID_BUTTON8, _("9"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON8"));
-    wxFont Button6Font(48,wxSWISS,wxFONTSTYLE_NORMAL,wxNORMAL,false,wxEmptyString,wxFONTENCODING_DEFAULT);
-    Button6->SetFont(Button6Font);
-    BoxSizer13->Add(Button6, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-    BoxSizer11->Add(BoxSizer13, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-    BoxSizer14 = new wxBoxSizer(wxHORIZONTAL);
+    BoxSizer20->Add(Button6, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    BoxSizer7->Add(BoxSizer20, 0, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    BoxSizer21 = new wxBoxSizer(wxHORIZONTAL);
     Button7 = new wxButton(Panel3, ID_BUTTON9, _("4"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON9"));
-    wxFont Button7Font(48,wxSWISS,wxFONTSTYLE_NORMAL,wxNORMAL,false,wxEmptyString,wxFONTENCODING_DEFAULT);
-    Button7->SetFont(Button7Font);
-    BoxSizer14->Add(Button7, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    BoxSizer21->Add(Button7, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     Button8 = new wxButton(Panel3, ID_BUTTON10, _("5"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON10"));
-    wxFont Button8Font(48,wxSWISS,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Arial"),wxFONTENCODING_DEFAULT);
-    Button8->SetFont(Button8Font);
-    BoxSizer14->Add(Button8, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    BoxSizer21->Add(Button8, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     Button9 = new wxButton(Panel3, ID_BUTTON11, _("6"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON11"));
-    wxFont Button9Font(48,wxSWISS,wxFONTSTYLE_NORMAL,wxNORMAL,false,wxEmptyString,wxFONTENCODING_DEFAULT);
-    Button9->SetFont(Button9Font);
-    BoxSizer14->Add(Button9, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-    BoxSizer11->Add(BoxSizer14, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-    BoxSizer15 = new wxBoxSizer(wxHORIZONTAL);
+    BoxSizer21->Add(Button9, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    BoxSizer7->Add(BoxSizer21, 0, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    BoxSizer22 = new wxBoxSizer(wxHORIZONTAL);
     Button10 = new wxButton(Panel3, ID_BUTTON12, _("1"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON12"));
-    wxFont Button10Font(48,wxSWISS,wxFONTSTYLE_NORMAL,wxNORMAL,false,wxEmptyString,wxFONTENCODING_DEFAULT);
-    Button10->SetFont(Button10Font);
-    BoxSizer15->Add(Button10, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    BoxSizer22->Add(Button10, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     Button11 = new wxButton(Panel3, ID_BUTTON13, _("2"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON13"));
-    wxFont Button11Font(48,wxSWISS,wxFONTSTYLE_NORMAL,wxNORMAL,false,wxEmptyString,wxFONTENCODING_DEFAULT);
-    Button11->SetFont(Button11Font);
-    BoxSizer15->Add(Button11, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    BoxSizer22->Add(Button11, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     Button12 = new wxButton(Panel3, ID_BUTTON14, _("3"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON14"));
-    wxFont Button12Font(48,wxSWISS,wxFONTSTYLE_NORMAL,wxNORMAL,false,wxEmptyString,wxFONTENCODING_DEFAULT);
-    Button12->SetFont(Button12Font);
-    BoxSizer15->Add(Button12, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-    BoxSizer11->Add(BoxSizer15, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-    BoxSizer16 = new wxBoxSizer(wxHORIZONTAL);
+    BoxSizer22->Add(Button12, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    BoxSizer7->Add(BoxSizer22, 0, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    BoxSizer23 = new wxBoxSizer(wxHORIZONTAL);
     Button13 = new wxButton(Panel3, ID_BUTTON15, _("0"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON15"));
-    wxFont Button13Font(48,wxSWISS,wxFONTSTYLE_NORMAL,wxNORMAL,false,wxEmptyString,wxFONTENCODING_DEFAULT);
-    Button13->SetFont(Button13Font);
-    BoxSizer16->Add(Button13, 2, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    BoxSizer23->Add(Button13, 2, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     Button14 = new wxButton(Panel3, ID_BUTTON16, _("."), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON16"));
-    wxFont Button14Font(48,wxSWISS,wxFONTSTYLE_NORMAL,wxNORMAL,false,wxEmptyString,wxFONTENCODING_DEFAULT);
-    Button14->SetFont(Button14Font);
-    BoxSizer16->Add(Button14, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-    BoxSizer11->Add(BoxSizer16, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-    BoxSizer10->Add(BoxSizer11, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-    BoxSizer12 = new wxBoxSizer(wxVERTICAL);
+    BoxSizer23->Add(Button14, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    BoxSizer7->Add(BoxSizer23, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    BoxSizer10->Add(BoxSizer7, 0, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    BoxSizer18 = new wxBoxSizer(wxVERTICAL);
     Button15 = new wxButton(Panel3, ID_BUTTON17, _("C"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON17"));
-    wxFont Button15Font(24,wxSWISS,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Arial"),wxFONTENCODING_DEFAULT);
-    Button15->SetFont(Button15Font);
-    BoxSizer12->Add(Button15, 1, wxTOP|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 10);
+    BoxSizer18->Add(Button15, 1, wxTOP|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 10);
     Button1 = new wxButton(Panel3, ID_BUTTON1, _("─"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON1"));
-    wxFont Button1Font(26,wxSWISS,wxFONTSTYLE_NORMAL,wxNORMAL,false,wxEmptyString,wxFONTENCODING_DEFAULT);
-    Button1->SetFont(Button1Font);
-    BoxSizer12->Add(Button1, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    BoxSizer18->Add(Button1, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     Button2 = new wxButton(Panel3, ID_BUTTON4, _("+"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON4"));
-    wxFont Button2Font(28,wxSWISS,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Arial"),wxFONTENCODING_DEFAULT);
-    Button2->SetFont(Button2Font);
-    BoxSizer12->Add(Button2, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    BoxSizer18->Add(Button2, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     Button3 = new wxButton(Panel3, ID_BUTTON5, _("="), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON5"));
-    wxFont Button3Font(26,wxSWISS,wxFONTSTYLE_NORMAL,wxNORMAL,false,wxEmptyString,wxFONTENCODING_DEFAULT);
-    Button3->SetFont(Button3Font);
-    BoxSizer12->Add(Button3, 2, wxBOTTOM|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 10);
-    BoxSizer10->Add(BoxSizer12, 0, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    BoxSizer18->Add(Button3, 2, wxBOTTOM|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 10);
+    BoxSizer10->Add(BoxSizer18, 0, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     BoxSizer8->Add(BoxSizer10, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     Panel3->SetSizer(BoxSizer8);
     BoxSizer8->Fit(Panel3);
     BoxSizer8->SetSizeHints(Panel3);
     Notebook1->AddPage(Panel2, _("__"), false);
     Notebook1->AddPage(Panel3, _("計算機"), false);
-    BoxSizer3->Add(Notebook1, 0, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
-    BoxSizer2->Add(BoxSizer3, 0, wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 5);
+    GridSizer1->Add(Notebook1, 0, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    BoxSizer2->Add(GridSizer1, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     BoxSizer4 = new wxBoxSizer(wxHORIZONTAL);
-    TextCtrl2 = new wxTextCtrl(Panel1, ID_TEXTCTRL2, wxEmptyString, wxDefaultPosition, wxSize(188,66), wxTE_PROCESS_ENTER, wxDefaultValidator, _T("ID_TEXTCTRL2"));
+    TextCtrl2 = new wxTextCtrl(Panel1, ID_TEXTCTRL2, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_PROCESS_ENTER, wxDefaultValidator, _T("ID_TEXTCTRL2"));
     TextCtrl2->Disable();
-    BoxSizer4->Add(TextCtrl2, 1, wxLEFT|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    BoxSizer4->Add(TextCtrl2, 1, wxLEFT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     BoxSizer5 = new wxBoxSizer(wxVERTICAL);
     StaticText3 = new wxStaticText(Panel1, ID_STATICTEXT3, _("color"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT3"));
     BoxSizer5->Add(StaticText3, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     ColourPickerCtrl1 = new wxColourPickerCtrl(Panel1, ID_COLOURPICKERCTRL1, wxColour(0,0,0), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_COLOURPICKERCTRL1"));
-    BoxSizer5->Add(ColourPickerCtrl1, 0, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    BoxSizer5->Add(ColourPickerCtrl1, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     BoxSizer4->Add(BoxSizer5, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     BoxSizer2->Add(BoxSizer4, 0, wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 5);
     Panel1->SetSizer(BoxSizer2);
     BoxSizer2->Fit(Panel1);
     BoxSizer2->SetSizeHints(Panel1);
-    BoxSizer1->Add(Panel1, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
+    BoxSizer1->Add(Panel1, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
     SetSizer(BoxSizer1);
     MenuBar1 = new wxMenuBar();
     Menu1 = new wxMenu();
@@ -278,17 +260,22 @@ netchatFrame::netchatFrame(wxWindow* parent,wxWindowID id)
     StatusBar1->SetStatusStyles(2,__wxStatusBarStyles_1);
     SetStatusBar(StatusBar1);
     Timer1.SetOwner(this, ID_TIMER1);
+    Timer2.SetOwner(this, ID_TIMER2);
+    Timer3.SetOwner(this, ID_TIMER3);
     BoxSizer1->Fit(this);
     BoxSizer1->SetSizeHints(this);
 
     Connect(ID_BUTTON3,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&netchatFrame::OnButton3_logonClick);
-    Connect(ID_BUTTON2,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&netchatFrame::OnButton2_logoutClick);
-    Connect(ID_NOTEBOOK1,wxEVT_COMMAND_NOTEBOOK_PAGE_CHANGED,(wxObjectEventFunction)&netchatFrame::OnNotebook1PageChanged);
+    Connect(ID_CHECKBOX1,wxEVT_COMMAND_CHECKBOX_CLICKED,(wxObjectEventFunction)&netchatFrame::OnCheckBox1_testClick);
+    Connect(ID_SLIDER1,wxEVT_SCROLL_THUMBRELEASE,(wxObjectEventFunction)&netchatFrame::OnSlider1CmdScrollThumbRelease);
+    Connect(ID_BUTTON12,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&netchatFrame::OnButton10Click);
     Connect(ID_TEXTCTRL2,wxEVT_COMMAND_TEXT_ENTER,(wxObjectEventFunction)&netchatFrame::OnTextCtrl2TextEnter);
     Connect(ID_COLOURPICKERCTRL1,wxEVT_COMMAND_COLOURPICKER_CHANGED,(wxObjectEventFunction)&netchatFrame::OnColourPickerCtrl1ColourChanged);
     Connect(idMenuQuit,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&netchatFrame::OnQuit);
     Connect(idMenuAbout,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&netchatFrame::OnAbout);
     Connect(ID_TIMER1,wxEVT_TIMER,(wxObjectEventFunction)&netchatFrame::OnTimer1Trigger);
+    Connect(ID_TIMER2,wxEVT_TIMER,(wxObjectEventFunction)&netchatFrame::OnTimer2Trigger);
+    Connect(ID_TIMER3,wxEVT_TIMER,(wxObjectEventFunction)&netchatFrame::OnTimer3Trigger);
     //*)
     Notebook1->Connect( wxEVT_ENTER_WINDOW, (wxObjectEventFunction)&netchatFrame::OnEnterNotebook1, 0, this );
     Notebook1->Connect( wxEVT_LEAVE_WINDOW, (wxObjectEventFunction)&netchatFrame::OnLeaveNotebook1, 0, this );
@@ -298,7 +285,8 @@ netchatFrame::netchatFrame(wxWindow* parent,wxWindowID id)
     m_Restricted = wxRect(0,496,43,19); //相對於程式視窗左上角原點的矩形限制區域
     m_pSocket =  NULL;
     m_pPackage = new MsgPackage();
-    m_ver = 20130911;
+    m_ver = 20130912;
+    //m_ver = 20130925;
 
 }
 
@@ -368,6 +356,7 @@ void netchatFrame::OnButton3_logonClick(wxCommandEvent& event)
 void netchatFrame::OnSocketEvent(wxSocketEvent& event)
 {
 	wxSocketBase* sock = event.GetSocket();
+	//long token_s, token_e, cur_pos;
 
 	switch ( event.GetSocketEvent() )
 	{
@@ -380,8 +369,10 @@ void netchatFrame::OnSocketEvent(wxSocketEvent& event)
 			break;
 	}
 
-	wxString colour_str;
-	wxColour colour_custom;
+	//wxString colour_str;
+	//wxColour colour_custom;
+	//wxString bctitle;
+	//bctitle = _("[  ]:");
 	switch ( event.GetSocketEvent() )
 	{
 		//接收處理
@@ -399,18 +390,18 @@ void netchatFrame::OnSocketEvent(wxSocketEvent& event)
 							(*RichTextCtrl1) << StringTowxString(package_r.msg()) << _("\n");
 							break;
 						case 1:
-							(*RichTextCtrl1) << StringTowxString(package_r.m_susername()) + _(": login stage(0x00) = ") << package_r.m_login_stage() << _("\n");
+//							(*RichTextCtrl1) << StringTowxString(package_r.m_susername()) + _(": login stage(0x00) = ") << package_r.m_login_stage() << _("\n");
 							m_pPackage->set_m_susername( wxStringToString( TextCtrl6_username->GetValue() ) );
 							m_pPackage->set_m_nsock_id( package_r.m_nsock_id() );
 							m_pPackage->set_m_login_stage(2);
 							SendPackage( m_pSocket, m_pPackage );
 							break;
 						case 2:
-							(*RichTextCtrl1) << StringTowxString(package_r.m_susername()) + _(": login stage(0x00) = ") << package_r.m_login_stage() << _("\n");
+//							(*RichTextCtrl1) << StringTowxString(package_r.m_susername()) + _(": login stage(0x00) = ") << package_r.m_login_stage() << _("\n");
 							(*RichTextCtrl1) << _("hey dude, 這世界上的 ") + TextCtrl6_username->GetValue() + _(" 只有一個...ㄎㄎ") << _("\n");
 							break;
 						case 3:
-							(*RichTextCtrl1) << StringTowxString(package_r.m_susername()) + _(": login stage(0x00) = ") << package_r.m_login_stage() << _("\n");
+//							(*RichTextCtrl1) << StringTowxString(package_r.m_susername()) + _(": login stage(0x00) = ") << package_r.m_login_stage() << _("\n");
 							if ( package_r.m_login_flag() ) {
 								m_pPackage->set_m_login_flag(true);
 								m_pPackage->set_m_update_user_flag( true );
@@ -422,13 +413,13 @@ void netchatFrame::OnSocketEvent(wxSocketEvent& event)
 							}
 							break;
 						case 4:
-							(*RichTextCtrl1) << StringTowxString(package_r.m_susername()) + _(": login stage(0x00) = ") << package_r.m_login_stage() << _("\n");
+//							(*RichTextCtrl1) << StringTowxString(package_r.m_susername()) + _(": login stage(0x00) = ") << package_r.m_login_stage() << _("\n");
 							break;
 						case 5:
 							//RichTextCtrl1->SetDefaultStyle(wxTextAttr(*wxRED));
-							(*RichTextCtrl1) << StringTowxString(package_r.m_susername()) + _(": login stage(0x00) = ") << package_r.m_login_stage() << _("\n");
-							(*RichTextCtrl1) << _("login stage = ") << package_r.m_login_stage() << _("\n");
-							(*RichTextCtrl1) << _("update user list: ") << (package_r.m_update_user_flag()?_("true"):_("false")) << _("\n");
+//							(*RichTextCtrl1) << StringTowxString(package_r.m_susername()) + _(": login stage(0x00) = ") << package_r.m_login_stage() << _("\n");
+//							(*RichTextCtrl1) << _("login stage = ") << package_r.m_login_stage() << _("\n");
+//							(*RichTextCtrl1) << _("update user list: ") << (package_r.m_update_user_flag()?_("true"):_("false")) << _("\n");
 							CheckListBox1_usetlist->Clear();//清除全部
 							for ( int i = 0; i < package_r.m_user_list_size(); i++ ) {
 								if ( StringTowxString(package_r.m_user_list(i)) != TextCtrl6_username->GetValue() ) {
@@ -439,11 +430,11 @@ void netchatFrame::OnSocketEvent(wxSocketEvent& event)
 							m_pPackage->clear_m_update_user_flag();
 							m_pPackage->set_handle( 0x69 );
 							(*RichTextCtrl1) << _("login successful.") << _("\n");
-							(*RichTextCtrl1) << _("User: ") + StringTowxString(m_pPackage->m_susername()) <<_("\n");
-							(*RichTextCtrl1) << _("password: ") + StringTowxString(m_pPackage->m_spassword()) <<_("\n");
-							(*RichTextCtrl1) << _("login stage: ") << m_pPackage->m_login_stage() <<_("\n");
-							(*RichTextCtrl1) << _("login flag: ") << (m_pPackage->m_login_flag()?_("true"):_("false")) <<_("\n");
-							(*RichTextCtrl1) << _("Update user flag: ") << (m_pPackage->m_update_user_flag()?_("true"):_("false")) <<_("\n");
+//							(*RichTextCtrl1) << _("User: ") + StringTowxString(m_pPackage->m_susername()) <<_("\n");
+//							(*RichTextCtrl1) << _("password: ") + StringTowxString(m_pPackage->m_spassword()) <<_("\n");
+//							(*RichTextCtrl1) << _("login stage: ") << m_pPackage->m_login_stage() <<_("\n");
+//							(*RichTextCtrl1) << _("login flag: ") << (m_pPackage->m_login_flag()?_("true"):_("false")) <<_("\n");
+//							(*RichTextCtrl1) << _("Update user flag: ") << (m_pPackage->m_update_user_flag()?_("true"):_("false")) <<_("\n");
 							(*RichTextCtrl1) << _("handle code: ") << m_pPackage->handle() <<_("\n");
 							(*RichTextCtrl1) << _("error code: ") << m_pPackage->m_err_code() <<_("\n");
 							Timer1.Start(2000, true);
@@ -457,18 +448,18 @@ void netchatFrame::OnSocketEvent(wxSocketEvent& event)
 					}
 					break;
 				case 0x69: //已登入
-					colour_str = StringTowxString( package_r.colour() );
-					colour_custom.Set( colour_str );
-					RichTextCtrl1->BeginTextColour( colour_custom );
-					RichTextCtrl1->WriteText(_("[ ") + StringTowxString(package_r.m_susername()) + _(" ]:"));
-					RichTextCtrl1->Newline();
-					RichTextCtrl1->WriteText(StringTowxString(package_r.msg()));
-					RichTextCtrl1->BeginLeftIndent(30);
-					RichTextCtrl1->Newline();
-					RichTextCtrl1->EndRightIndent();
-					RichTextCtrl1->EndTextColour();
-					RichTextCtrl1->ScrollIntoView(RichTextCtrl1->GetCaretPosition(),WXK_PAGEDOWN);
-					RequestUserAttention();
+					showtext( RichTextCtrl1, package_r );
+					break;
+				case 0x16:
+					showtext( RichTextCtrl1, package_r );
+					//RichTextCtrl1->WriteText(_("[ ") + StringTowxString(package_r.m_susername()) + _(" ]:"));
+					//RichTextCtrl1->WriteText( _("[ 訊息推播 ]:") );
+					//RichTextCtrl1->Newline();
+					//RichTextCtrl1->WriteText(StringTowxString(package_r.msg()));
+					//RichTextCtrl1->BeginLeftIndent(30);
+					//RichTextCtrl1->Newline();
+					//RichTextCtrl1->EndRightIndent();
+					//RichTextCtrl1->ScrollIntoView(RichTextCtrl1->GetCaretPosition(),WXK_PAGEDOWN);
 					break;
 				case 0x31: //其他使用者登入
 					//(*RichTextCtrl1) << StringTowxString(package_r.m_susername()) + _(": 有人登入了") << _("\n");
@@ -535,22 +526,9 @@ void netchatFrame::OnTextCtrl2TextEnter(wxCommandEvent& event)
 //	(*RichTextCtrl1) << _("Err code = ") << m_pPackage->m_err_code() << _("\n");
 //	(*RichTextCtrl1) << _("update_user_flag = ") << m_pPackage->m_update_user_flag() << _("\n");
 	if ( !TextCtrl2->GetValue().IsEmpty() ) {
-		//RichTextCtrl1->Freeze();
-		RichTextCtrl1->BeginTextColour( m_colour );
-		RichTextCtrl1->WriteText(_("[ ") + TextCtrl6_username->GetValue() + _(" ]:"));
-
-		RichTextCtrl1->Newline();
-		RichTextCtrl1->WriteText(TextCtrl2->GetValue());
-		RichTextCtrl1->BeginLeftIndent(30);
-		RichTextCtrl1->Newline();
-		RichTextCtrl1->EndLeftIndent();
-		RichTextCtrl1->EndTextColour();
-		RichTextCtrl1->ScrollIntoView(RichTextCtrl1->GetCaretPosition(),WXK_PAGEDOWN);
-		//RichTextCtrl1->ShowPosition( RichTextCtrl1->GetLastPosition() );
-		//RichTextCtrl1->Thaw();
-
-		//(*RichTextCtrl1) << TextCtrl6_username->GetValue() + _(":") << _("\n");
-		//(*RichTextCtrl1) << TextCtrl2->GetValue() << _("\n") ;
+		//使用者輸入訊息直接輸出
+		showtext_local( RichTextCtrl1 );
+		//使用者輸入訊息→封包
 		m_pPackage->clear_m_starget_user();
 		for ( size_t i = 0; i < CheckListBox1_usetlist->GetCount(); i++ ) {
 			if ( CheckListBox1_usetlist->IsChecked(i) ) {
@@ -630,6 +608,63 @@ void netchatFrame::OnColourPickerCtrl1ColourChanged(wxColourPickerEvent& event)
 	m_colour = ColourPickerCtrl1->GetColour();
 }
 
+void netchatFrame::showtext(wxRichTextCtrl* rtc, MsgPackage& package_tmp)
+{
+	wxDateTime local_time;
+	long token_s, token_e, cur_pos;
+	cur_pos = rtc->GetLastPosition();
+	wxString colour_tmp = StringTowxString( package_tmp.colour() );
+	wxColour colour_custom;
+	colour_custom.Set( colour_tmp );
+	rtc->GetSelection( &token_s, &token_e );
+	rtc->SetInsertionPointEnd();
+	rtc->Freeze();
+	rtc->BeginTextColour( colour_custom );
+	switch (package_tmp.handle()) {
+		case 0x69: 
+			//一般使用者傳訊
+			rtc->WriteText(_("[ ") + StringTowxString(package_tmp.m_susername()) + _(" ]:"));
+			break;
+		case 0x16: 
+			//伺服器推播
+			rtc->WriteText( _("[ 推播 ]:") );
+			break;
+		default:
+			break;
+	}
+	rtc->Newline();
+	rtc->WriteText(StringTowxString(package_tmp.msg()));
+	rtc->BeginFontSize(8);
+	rtc->BeginTextColour( *wxLIGHT_GREY );
+	rtc->WriteText( _("    at:") + local_time.Now().FormatISOTime() );
+	rtc->EndTextColour();
+	rtc->EndFontSize();
+	rtc->BeginLeftIndent(30);
+	rtc->Newline();
+	rtc->EndRightIndent();
+	rtc->EndTextColour();
+	rtc->Thaw();
+	rtc->SetSelection( token_s, token_e);
+	if ( rtc->IsPositionVisible( cur_pos ) ) {
+		rtc->SetInsertionPointEnd();
+		//rtc->ScrollIntoView(rtc->GetCaretPosition(),WXK_PAGEDOWN);
+		//wxMessageBox(_("sdf"));
+		rtc->ScrollIntoView(rtc->GetCaretPosition(),WXK_PAGEDOWN);
+	}
+	if ( (!this->IsActive()) && (package_tmp.handle() == 0x69) ) {
+		if ( !m_attention ) {
+			RequestUserAttention();
+			m_attention = true;
+		}
+	}
+	else {
+		if ( (package_tmp.handle() == 0x69) ) {
+			m_attention = false;
+		}
+	}
+}
+
+
 void netchatFrame::showtext(wxTextCtrl* tc, wxString s)
 {
 	// HACK: Under Windows (using wxTE_RICH2) we have trouble ensuring that the last
@@ -651,19 +686,111 @@ void netchatFrame::showtext(wxTextCtrl* tc, wxString s)
     tc->Thaw();                   // Allow the window to redraw
 }
 
+void netchatFrame::showtext_local(wxRichTextCtrl* rtc)
+{
+	rtc->SetInsertionPointEnd();
+	rtc->Freeze();
+	rtc->BeginTextColour( m_colour );
+	rtc->WriteText(_("[ ") + TextCtrl6_username->GetValue() + _(" ]:"));
+	rtc->Newline();
+	rtc->WriteText(TextCtrl2->GetValue());
+	rtc->BeginLeftIndent(30);
+	rtc->Newline();
+	rtc->EndRightIndent();
+	rtc->EndTextColour();
+	rtc->Thaw();
+	rtc->ScrollIntoView(rtc->GetCaretPosition(),WXK_PAGEDOWN);
+}
+
+
 void netchatFrame::OnKeyDown(wxKeyEvent& event)
 {
 	if ( event.GetKeyCode() == WXK_ESCAPE ) {
 		//wxMessageBox(_(""));
 		Notebook1->SetSelection(1);
+		//Timer2.Start(5);
 	}
 	else {
 		event.Skip();
 	}
 }
 
-void netchatFrame::OnNotebook1PageChanged(wxNotebookEvent& event)
+void netchatFrame::OnTimer2Trigger(wxTimerEvent& event)
 {
-	Notebook1->SetSelection(1);
+	if ( Slider1->GetValue() != 0 ) {
+		if ( Slider1->GetValue() < Slider1->GetMax() )
+		{
+			Slider1->SetValue( Slider1->GetValue() - 1 );
+		}
+	}
 }
 
+void netchatFrame::OnSlider1CmdScrollThumbRelease(wxScrollEvent& event)
+{
+	if ( Slider1->GetValue() == Slider1->GetMax() ) {
+		Notebook1->ChangeSelection(0);
+		Slider1->SetValue(0);
+		Timer2.Stop();
+	}
+	else {
+		Timer2.Start(5);
+	}
+
+}
+
+void netchatFrame::OnButton10Click(wxCommandEvent& event)
+{
+	wxMessageBox(_(""));
+}
+
+void netchatFrame::OnCheckBox1_testClick(wxCommandEvent& event)
+{
+	if ( CheckBox1_test->IsChecked() ) {
+		TextCtrl4->Enable(false);
+		//if ( !Timer3.IsRunning() )
+			//m_linemsg_idx = 0;
+			long temp_t = 0;
+			TextCtrl4->GetValue().ToLong(&temp_t);
+			Timer3.Start(temp_t);
+	}
+	else {
+		TextCtrl4->Enable(true);
+		if ( Timer3.IsRunning() )
+			Timer3.Stop();
+	}
+}
+
+void netchatFrame::OnTimer3Trigger(wxTimerEvent& event)
+{
+	if ( !TextCtrl2->GetValue().IsEmpty() ) {
+		//RichTextCtrl1->Freeze();
+		RichTextCtrl1->BeginTextColour( m_colour );
+		RichTextCtrl1->AppendText(_("[ ") + TextCtrl6_username->GetValue() + _(" ]:"));
+
+		RichTextCtrl1->Newline();
+		RichTextCtrl1->AppendText(TextCtrl2->GetValue());
+		RichTextCtrl1->BeginLeftIndent(30);
+		RichTextCtrl1->Newline();
+		RichTextCtrl1->EndLeftIndent();
+		RichTextCtrl1->EndTextColour();
+		RichTextCtrl1->ScrollIntoView(RichTextCtrl1->GetCaretPosition(),WXK_PAGEDOWN);
+		//RichTextCtrl1->ShowPosition( RichTextCtrl1->GetLastPosition() );
+		//RichTextCtrl1->Thaw();
+
+		//(*RichTextCtrl1) << TextCtrl6_username->GetValue() + _(":") << _("\n");
+		//(*RichTextCtrl1) << TextCtrl2->GetValue() << _("\n") ;
+		m_pPackage->clear_m_starget_user();
+		for ( size_t i = 0; i < CheckListBox1_usetlist->GetCount(); i++ ) {
+			if ( CheckListBox1_usetlist->IsChecked(i) ) {
+				wxString user_tmp = CheckListBox1_usetlist->GetString(i);
+				m_pPackage->add_m_starget_user( wxStringToString( user_tmp ) );
+			}
+		}
+		wxString colour_tmp = m_colour.GetAsString();
+		m_pPackage->set_colour( wxStringToString( colour_tmp ) );
+		m_pPackage->set_m_susername( wxStringToString( TextCtrl6_username->GetValue() ) );
+		m_pPackage->set_msg( wxStringToString( TextCtrl2->GetValue() ) );
+		SendPackage( m_pSocket, m_pPackage );
+		//TextCtrl2->Clear();
+	}
+}

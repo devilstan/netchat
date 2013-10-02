@@ -9,101 +9,113 @@
 					<object class="wxBoxSizer" variable="BoxSizer2" member="yes">
 						<orient>wxVERTICAL</orient>
 						<object class="sizeritem">
-							<object class="wxBoxSizer" variable="BoxSizer3" member="no">
+							<object class="wxGridSizer" variable="GridSizer1" member="no">
+								<cols>1</cols>
+								<rows>1</rows>
 								<object class="sizeritem">
 									<object class="wxNotebook" name="ID_NOTEBOOK1" variable="Notebook1" member="yes">
-										<size>484,516</size>
 										<style>wxNB_BOTTOM</style>
-										<handler function="OnNotebook1PageChanged" entry="EVT_NOTEBOOK_PAGE_CHANGED" />
 										<object class="notebookpage">
 											<object class="wxPanel" name="ID_PANEL2" variable="Panel2" member="yes">
-												<object class="wxBoxSizer" variable="BoxSizer6" member="yes">
-													<orient>wxVERTICAL</orient>
+												<object class="wxBoxSizer" variable="BoxSizer3" member="no">
 													<object class="sizeritem">
-														<object class="wxStaticBoxSizer" variable="StaticBoxSizer2" member="yes">
-															<label>Inpit</label>
+														<object class="wxBoxSizer" variable="BoxSizer17" member="no">
+															<orient>wxVERTICAL</orient>
 															<object class="sizeritem">
-																<object class="wxStaticText" name="ID_STATICTEXT1" variable="StaticText1" member="yes">
-																	<label>username</label>
-																</object>
-																<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-																<border>5</border>
-															</object>
-															<object class="sizeritem">
-																<object class="wxTextCtrl" name="ID_TEXTCTRL6" variable="TextCtrl6_username" member="yes" />
-																<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-																<border>5</border>
-																<option>1</option>
-															</object>
-															<object class="sizeritem">
-																<object class="wxStaticText" name="ID_STATICTEXT2" variable="StaticText2" member="yes">
-																	<label>passwd</label>
-																</object>
-																<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-																<border>5</border>
-															</object>
-															<object class="sizeritem">
-																<object class="wxTextCtrl" name="ID_TEXTCTRL7" variable="TextCtrl7_passwd" member="yes">
-																	<style>wxTE_PASSWORD</style>
-																</object>
-																<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-																<border>5</border>
-																<option>1</option>
-															</object>
-															<object class="sizeritem">
-																<object class="wxButton" name="ID_BUTTON3" variable="Button3_logon" member="yes">
-																	<label>登入</label>
-																	<handler function="OnButton3_logonClick" entry="EVT_BUTTON" />
-																</object>
-																<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-																<border>5</border>
-															</object>
-														</object>
-														<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-														<border>5</border>
-													</object>
-													<object class="sizeritem">
-														<object class="wxStaticBoxSizer" variable="StaticBoxSizer1" member="no">
-															<label>Server</label>
-															<object class="sizeritem">
-																<object class="wxTextCtrl" name="ID_TEXTCTRL3" variable="TextCtrl3" member="yes">
-																	<value>172.16.132.141</value>
-																</object>
-																<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-																<border>5</border>
-															</object>
-															<object class="sizeritem">
-																<object class="wxButton" name="ID_BUTTON2" variable="Button2_logout" member="yes">
-																	<label>logout</label>
-																	<enabled>0</enabled>
-																	<handler function="OnButton2_logoutClick" entry="EVT_BUTTON" />
-																</object>
-																<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-																<border>5</border>
-																<option>1</option>
-															</object>
-														</object>
-														<flag>wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_TOP</flag>
-														<border>5</border>
-													</object>
-													<object class="sizeritem">
-														<object class="wxBoxSizer" variable="BoxSizer7" member="no">
-															<object class="sizeritem">
-																<object class="wxRichTextCtrl" name="ID_RICHTEXTCTRL1" variable="RichTextCtrl1" member="yes">
-																	<style>wxRE_MULTILINE|wxRE_READONLY</style>
+																<object class="wxStaticBoxSizer" variable="StaticBoxSizer2" member="yes">
+																	<label>Input</label>
+																	<object class="sizeritem">
+																		<object class="wxStaticText" name="ID_STATICTEXT1" variable="StaticText1" member="yes">
+																			<label>username</label>
+																		</object>
+																		<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+																		<border>5</border>
+																	</object>
+																	<object class="sizeritem">
+																		<object class="wxTextCtrl" name="ID_TEXTCTRL6" variable="TextCtrl6_username" member="yes" />
+																		<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+																		<border>5</border>
+																	</object>
+																	<object class="sizeritem">
+																		<object class="wxStaticText" name="ID_STATICTEXT2" variable="StaticText2" member="yes">
+																			<label>passwd</label>
+																		</object>
+																		<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+																		<border>5</border>
+																	</object>
+																	<object class="sizeritem">
+																		<object class="wxTextCtrl" name="ID_TEXTCTRL7" variable="TextCtrl7_passwd" member="yes">
+																			<style>wxTE_PASSWORD</style>
+																		</object>
+																		<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+																		<border>5</border>
+																	</object>
+																	<object class="sizeritem">
+																		<object class="wxButton" name="ID_BUTTON3" variable="Button3_logon" member="yes">
+																			<label>登入</label>
+																			<size>48,24</size>
+																			<handler function="OnButton3_logonClick" entry="EVT_BUTTON" />
+																		</object>
+																		<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+																		<border>5</border>
+																	</object>
 																</object>
 																<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-																<option>1</option>
+																<border>5</border>
 															</object>
 															<object class="sizeritem">
-																<object class="wxCheckListBox" name="ID_CHECKLISTBOX1" variable="CheckListBox1_usetlist" member="yes">
-																	<style>wxLB_MULTIPLE</style>
+																<object class="wxStaticBoxSizer" variable="StaticBoxSizer3" member="no">
+																	<label>Label</label>
+																	<object class="sizeritem">
+																		<object class="wxTextCtrl" name="ID_TEXTCTRL3" variable="TextCtrl3" member="yes">
+																			<value>127.0.0.1</value>
+																		</object>
+																		<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+																		<border>5</border>
+																	</object>
+																	<object class="sizeritem">
+																		<object class="wxCheckBox" name="ID_CHECKBOX1" variable="CheckBox1_test" member="yes">
+																			<label>test</label>
+																			<handler function="OnCheckBox1_testClick" entry="EVT_CHECKBOX" />
+																		</object>
+																		<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+																		<border>5</border>
+																	</object>
+																	<object class="sizeritem">
+																		<object class="wxTextCtrl" name="ID_TEXTCTRL4" variable="TextCtrl4" member="yes">
+																			<value>100</value>
+																		</object>
+																		<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+																		<border>5</border>
+																	</object>
 																</object>
-																<flag>wxLEFT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+																<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 																<border>5</border>
+															</object>
+															<object class="sizeritem">
+																<object class="wxBoxSizer" variable="BoxSizer6" member="no">
+																	<object class="sizeritem">
+																		<object class="wxRichTextCtrl" name="ID_RICHTEXTCTRL1" variable="RichTextCtrl1" member="yes">
+																			<style>wxRE_MULTILINE|wxRE_READONLY</style>
+																		</object>
+																		<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+																		<option>2</option>
+																	</object>
+																	<object class="sizeritem">
+																		<object class="wxCheckListBox" name="ID_CHECKLISTBOX1" variable="CheckListBox1_usetlist" member="yes">
+																			<style>wxLB_MULTIPLE</style>
+																		</object>
+																		<flag>wxLEFT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+																		<border>5</border>
+																	</object>
+																</object>
+																<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+																<border>5</border>
+																<option>1</option>
 															</object>
 														</object>
 														<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+														<border>5</border>
 														<option>1</option>
 													</object>
 												</object>
@@ -112,14 +124,21 @@
 										</object>
 										<object class="notebookpage">
 											<object class="wxPanel" name="ID_PANEL3" variable="Panel3" member="yes">
-												<exstyle>wxWS_EX_BLOCK_EVENTS</exstyle>
 												<object class="wxBoxSizer" variable="BoxSizer8" member="no">
 													<orient>wxVERTICAL</orient>
 													<object class="sizeritem">
 														<object class="wxBoxSizer" variable="BoxSizer9" member="no">
+															<orient>wxVERTICAL</orient>
+															<object class="sizeritem">
+																<object class="wxSlider" name="ID_SLIDER1" variable="Slider1" member="yes">
+																	<thumb>10</thumb>
+																	<handler function="OnSlider1CmdScrollThumbRelease" entry="EVT_COMMAND_SCROLL_THUMBRELEASE" />
+																</object>
+																<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+															</object>
 															<object class="sizeritem">
 																<object class="wxTextCtrl" name="ID_TEXTCTRL1" variable="TextCtrl1" member="yes">
-																	<size>456,82</size>
+																	<size>-1,-1</size>
 																	<font>
 																		<size>48</size>
 																		<style>normal</style>
@@ -129,7 +148,7 @@
 																	</font>
 																	<style>wxTE_RIGHT</style>
 																</object>
-																<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+																<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 																<border>5</border>
 																<option>1</option>
 															</object>
@@ -140,20 +159,13 @@
 													<object class="sizeritem">
 														<object class="wxBoxSizer" variable="BoxSizer10" member="no">
 															<object class="sizeritem">
-																<object class="wxBoxSizer" variable="BoxSizer11" member="no">
+																<object class="wxBoxSizer" variable="BoxSizer7" member="no">
 																	<orient>wxVERTICAL</orient>
 																	<object class="sizeritem">
-																		<object class="wxBoxSizer" variable="BoxSizer13" member="no">
+																		<object class="wxBoxSizer" variable="BoxSizer20" member="no">
 																			<object class="sizeritem">
 																				<object class="wxButton" name="ID_BUTTON6" variable="Button4" member="yes">
 																					<label>7</label>
-																					<font>
-																						<size>48</size>
-																						<style>normal</style>
-																						<weight>normal</weight>
-																						<underlined>0</underlined>
-																						<family>swiss</family>
-																					</font>
 																				</object>
 																				<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 																				<border>5</border>
@@ -162,13 +174,6 @@
 																			<object class="sizeritem">
 																				<object class="wxButton" name="ID_BUTTON7" variable="Button5" member="yes">
 																					<label>8</label>
-																					<font>
-																						<size>48</size>
-																						<style>normal</style>
-																						<weight>normal</weight>
-																						<underlined>0</underlined>
-																						<family>swiss</family>
-																					</font>
 																				</object>
 																				<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 																				<border>5</border>
@@ -177,13 +182,6 @@
 																			<object class="sizeritem">
 																				<object class="wxButton" name="ID_BUTTON8" variable="Button6" member="yes">
 																					<label>9</label>
-																					<font>
-																						<size>48</size>
-																						<style>normal</style>
-																						<weight>normal</weight>
-																						<underlined>0</underlined>
-																						<family>swiss</family>
-																					</font>
 																				</object>
 																				<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 																				<border>5</border>
@@ -192,125 +190,72 @@
 																		</object>
 																		<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 																		<border>5</border>
-																		<option>1</option>
 																	</object>
 																	<object class="sizeritem">
-																		<object class="wxBoxSizer" variable="BoxSizer14" member="no">
+																		<object class="wxBoxSizer" variable="BoxSizer21" member="no">
 																			<object class="sizeritem">
 																				<object class="wxButton" name="ID_BUTTON9" variable="Button7" member="yes">
 																					<label>4</label>
-																					<font>
-																						<size>48</size>
-																						<style>normal</style>
-																						<weight>normal</weight>
-																						<underlined>0</underlined>
-																						<family>swiss</family>
-																					</font>
 																				</object>
-																				<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+																				<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 																				<border>5</border>
 																				<option>1</option>
 																			</object>
 																			<object class="sizeritem">
 																				<object class="wxButton" name="ID_BUTTON10" variable="Button8" member="yes">
 																					<label>5</label>
-																					<font>
-																						<size>48</size>
-																						<style>normal</style>
-																						<weight>normal</weight>
-																						<underlined>0</underlined>
-																						<family>swiss</family>
-																						<face>Arial</face>
-																					</font>
 																				</object>
-																				<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+																				<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 																				<border>5</border>
 																				<option>1</option>
 																			</object>
 																			<object class="sizeritem">
 																				<object class="wxButton" name="ID_BUTTON11" variable="Button9" member="yes">
 																					<label>6</label>
-																					<font>
-																						<size>48</size>
-																						<style>normal</style>
-																						<weight>normal</weight>
-																						<underlined>0</underlined>
-																						<family>swiss</family>
-																					</font>
 																				</object>
-																				<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+																				<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 																				<border>5</border>
 																				<option>1</option>
 																			</object>
 																		</object>
 																		<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 																		<border>5</border>
-																		<option>1</option>
 																	</object>
 																	<object class="sizeritem">
-																		<object class="wxBoxSizer" variable="BoxSizer15" member="no">
+																		<object class="wxBoxSizer" variable="BoxSizer22" member="no">
 																			<object class="sizeritem">
 																				<object class="wxButton" name="ID_BUTTON12" variable="Button10" member="yes">
 																					<label>1</label>
-																					<font>
-																						<size>48</size>
-																						<style>normal</style>
-																						<weight>normal</weight>
-																						<underlined>0</underlined>
-																						<family>swiss</family>
-																					</font>
+																					<handler function="OnButton10Click" entry="EVT_BUTTON" />
 																				</object>
-																				<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+																				<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 																				<border>5</border>
-																				<option>1</option>
 																			</object>
 																			<object class="sizeritem">
 																				<object class="wxButton" name="ID_BUTTON13" variable="Button11" member="yes">
 																					<label>2</label>
-																					<font>
-																						<size>48</size>
-																						<style>normal</style>
-																						<weight>normal</weight>
-																						<underlined>0</underlined>
-																						<family>swiss</family>
-																					</font>
 																				</object>
-																				<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+																				<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 																				<border>5</border>
 																				<option>1</option>
 																			</object>
 																			<object class="sizeritem">
 																				<object class="wxButton" name="ID_BUTTON14" variable="Button12" member="yes">
 																					<label>3</label>
-																					<font>
-																						<size>48</size>
-																						<style>normal</style>
-																						<weight>normal</weight>
-																						<underlined>0</underlined>
-																						<family>swiss</family>
-																					</font>
 																				</object>
-																				<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+																				<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 																				<border>5</border>
 																				<option>1</option>
 																			</object>
 																		</object>
 																		<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 																		<border>5</border>
-																		<option>1</option>
 																	</object>
 																	<object class="sizeritem">
-																		<object class="wxBoxSizer" variable="BoxSizer16" member="no">
+																		<object class="wxBoxSizer" variable="BoxSizer23" member="no">
 																			<object class="sizeritem">
 																				<object class="wxButton" name="ID_BUTTON15" variable="Button13" member="yes">
 																					<label>0</label>
-																					<font>
-																						<size>48</size>
-																						<style>normal</style>
-																						<weight>normal</weight>
-																						<underlined>0</underlined>
-																						<family>swiss</family>
-																					</font>
 																				</object>
 																				<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 																				<border>5</border>
@@ -319,13 +264,6 @@
 																			<object class="sizeritem">
 																				<object class="wxButton" name="ID_BUTTON16" variable="Button14" member="yes">
 																					<label>.</label>
-																					<font>
-																						<size>48</size>
-																						<style>normal</style>
-																						<weight>normal</weight>
-																						<underlined>0</underlined>
-																						<family>swiss</family>
-																					</font>
 																				</object>
 																				<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 																				<border>5</border>
@@ -339,70 +277,39 @@
 																</object>
 																<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 																<border>5</border>
-																<option>1</option>
 															</object>
 															<object class="sizeritem">
-																<object class="wxBoxSizer" variable="BoxSizer12" member="no">
+																<object class="wxBoxSizer" variable="BoxSizer18" member="no">
 																	<orient>wxVERTICAL</orient>
 																	<object class="sizeritem">
 																		<object class="wxButton" name="ID_BUTTON17" variable="Button15" member="yes">
 																			<label>C</label>
-																			<font>
-																				<size>24</size>
-																				<style>normal</style>
-																				<weight>normal</weight>
-																				<underlined>0</underlined>
-																				<family>swiss</family>
-																				<face>Arial</face>
-																			</font>
 																		</object>
-																		<flag>wxTOP|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+																		<flag>wxTOP|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 																		<border>10</border>
 																		<option>1</option>
 																	</object>
 																	<object class="sizeritem">
 																		<object class="wxButton" name="ID_BUTTON1" variable="Button1" member="yes">
 																			<label>─</label>
-																			<font>
-																				<size>26</size>
-																				<style>normal</style>
-																				<weight>normal</weight>
-																				<underlined>0</underlined>
-																				<family>swiss</family>
-																			</font>
 																		</object>
-																		<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+																		<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 																		<border>5</border>
 																		<option>1</option>
 																	</object>
 																	<object class="sizeritem">
 																		<object class="wxButton" name="ID_BUTTON4" variable="Button2" member="yes">
 																			<label>+</label>
-																			<font>
-																				<size>28</size>
-																				<style>normal</style>
-																				<weight>normal</weight>
-																				<underlined>0</underlined>
-																				<family>swiss</family>
-																				<face>Arial</face>
-																			</font>
 																		</object>
-																		<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+																		<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 																		<border>5</border>
 																		<option>1</option>
 																	</object>
 																	<object class="sizeritem">
 																		<object class="wxButton" name="ID_BUTTON5" variable="Button3" member="yes">
 																			<label>=</label>
-																			<font>
-																				<size>26</size>
-																				<style>normal</style>
-																				<weight>normal</weight>
-																				<underlined>0</underlined>
-																				<family>swiss</family>
-																			</font>
 																		</object>
-																		<flag>wxBOTTOM|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+																		<flag>wxBOTTOM|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 																		<border>10</border>
 																		<option>2</option>
 																	</object>
@@ -421,21 +328,22 @@
 										</object>
 									</object>
 									<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+									<border>5</border>
 								</object>
 							</object>
-							<flag>wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+							<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 							<border>5</border>
+							<option>1</option>
 						</object>
 						<object class="sizeritem">
 							<object class="wxBoxSizer" variable="BoxSizer4" member="no">
 								<object class="sizeritem">
 									<object class="wxTextCtrl" name="ID_TEXTCTRL2" variable="TextCtrl2" member="yes">
-										<size>188,66</size>
 										<enabled>0</enabled>
 										<style>wxTE_PROCESS_ENTER</style>
 										<handler function="OnTextCtrl2TextEnter" entry="EVT_TEXT_ENTER" />
 									</object>
-									<flag>wxLEFT|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+									<flag>wxLEFT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 									<border>5</border>
 									<option>1</option>
 								</object>
@@ -455,7 +363,7 @@
 												<colour>#000000</colour>
 												<handler function="OnColourPickerCtrl1ColourChanged" entry="EVT_COLOURPICKER_CHANGED" />
 											</object>
-											<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+											<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 											<border>5</border>
 										</object>
 									</object>
@@ -468,7 +376,7 @@
 						</object>
 					</object>
 				</object>
-				<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+				<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 				<option>1</option>
 			</object>
 		</object>
@@ -499,6 +407,12 @@
 		</object>
 		<object class="wxTimer" name="ID_TIMER1" variable="Timer1" member="yes">
 			<handler function="OnTimer1Trigger" entry="EVT_TIMER" />
+		</object>
+		<object class="wxTimer" name="ID_TIMER2" variable="Timer2" member="yes">
+			<handler function="OnTimer2Trigger" entry="EVT_TIMER" />
+		</object>
+		<object class="wxTimer" name="ID_TIMER3" variable="Timer3" member="yes">
+			<handler function="OnTimer3Trigger" entry="EVT_TIMER" />
 		</object>
 	</object>
 </wxsmith>
